@@ -1,0 +1,119 @@
+.wayfinder {
+  display: flex;
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  z-index: 900;
+  flex-direction: column;
+  gap: 9px;
+  padding: 14px 11px;
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 999px;
+  background: rgba(5,7,10,.82);
+  box-shadow: 0 18px 50px rgba(0,0,0,.5), inset 0 1px rgba(255,255,255,.035);
+  backdrop-filter: blur(20px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(20px,-50%);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(0,-50%);
+}
+
+.wayfinder a {
+  display: flex;
+  position: relative;
+  min-height: 18px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.wayfinder span {
+  position: absolute;
+  right: 25px;
+  padding: 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(5,7,10,.96);
+  color: #aab1bf;
+  font-family: var(--font-sans);
+  font-size: .6rem;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: opacity 150ms ease, transform 150ms ease;
+  white-space: nowrap;
+}
+
+.wayfinder i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4f586b;
+  transition: transform 150ms ease, background 150ms ease, box-shadow 150ms ease;
+}
+
+.wayfinder a:hover span,
+.wayfinder a:focus-visible span {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.wayfinder a[aria-current='location'] i {
+  background: #7190ff;
+  box-shadow: 0 0 13px rgba(113,144,255,.72);
+  transform: scale(1.55);
+}
+
+@media (max-width: 760px) {
+  .wayfinder {
+    top: auto;
+    right: 10px;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    left: 10px;
+    flex-direction: row;
+    gap: 0;
+    padding: 6px;
+    border-radius: 17px;
+    background: rgba(5,7,10,.92);
+    transform: translateY(24px);
+  }
+
+  .visible {
+    transform: translateY(0);
+  }
+
+  .wayfinder a {
+    min-width: 0;
+    min-height: 46px;
+    flex: 1;
+    flex-direction: column-reverse;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .wayfinder span {
+    position: static;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-size: .5rem;
+    opacity: 1;
+    transform: none;
+  }
+
+  .wayfinder i {
+    width: 4px;
+    height: 4px;
+  }
+
+  .wayfinder a:hover span,
+  .wayfinder a:focus-visible span {
+    transform: none;
+  }
+}

@@ -1,0 +1,112 @@
+.credentialsSection { overflow: hidden; border-bottom: 1px solid var(--line); }
+.header { display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: end; }
+.header > p { max-width: 510px; padding-bottom: 7px; color: var(--paper-dim); font-size: 1rem; line-height: 1.7; }
+
+.coverFlow { position: relative; margin-top: 62px; }
+.stage {
+  position: relative;
+  height: min(52vw, 600px);
+  min-height: 430px;
+  overflow: hidden;
+  perspective: 1500px;
+  perspective-origin: 50% 46%;
+}
+.stage::before {
+  position: absolute;
+  top: 10%;
+  right: 24%;
+  bottom: 5%;
+  left: 24%;
+  border-radius: 50%;
+  background: rgba(79,105,255,.08);
+  filter: blur(90px);
+  content: "";
+}
+.stage::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 120px;
+  background: linear-gradient(transparent, #000);
+  content: "";
+  pointer-events: none;
+  z-index: 20;
+}
+
+.coverCard {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  width: min(58vw, 720px);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 10px;
+  background: #0a0c11;
+  box-shadow: 0 30px 90px rgba(0,0,0,.68);
+  cursor: pointer;
+  opacity: calc(1 - var(--distance) * .2);
+  filter: blur(calc(var(--distance) * 1.15px)) saturate(calc(1 - var(--distance) * .12));
+  transform:
+    translate(-50%, -50%)
+    translateX(calc(var(--offset) * 49%))
+    translateZ(calc(var(--distance) * -90px))
+    rotateY(calc(var(--offset) * -8deg))
+    scale(calc(1 - var(--distance) * .12));
+  transition: transform 520ms cubic-bezier(.2,.8,.2,1), opacity 420ms ease, filter 420ms ease, box-shadow 220ms ease;
+  transform-style: preserve-3d;
+}
+.coverCard > img,
+.coverCard > .certificatePlaceholder { display: block; width: 100%; aspect-ratio: 1.414 / 1; object-fit: contain; }
+.coverCard > img { background: white; }
+.activeCard { box-shadow: 0 42px 120px rgba(0,0,0,.78), 0 0 0 1px rgba(113,144,255,.3), 0 0 80px rgba(75,104,255,.1); cursor: default; }
+
+.certificatePlaceholder {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f1f0eb;
+  color: #11131a;
+  text-align: center;
+}
+.certificatePlaceholder::before { position: absolute; inset: 20px; border: 1px solid #adb2bf; content: ""; }
+.certificatePlaceholder::after { position: absolute; inset: 29px; border: 1px solid rgba(79,98,174,.32); content: ""; }
+.seal { display: grid; position: relative; z-index: 2; width: 62px; height: 62px; margin-bottom: 20px; place-items: center; border: 1px solid #6374bd; border-radius: 50%; color: #4f62ae; font-family: var(--font-mono); font-size: .7rem; }
+.certificatePlaceholder > span { position: relative; z-index: 2; color: #6a6f7b; font-family: var(--font-mono); font-size: clamp(.42rem,.75vw,.6rem); letter-spacing: .16em; }
+.certificatePlaceholder strong { position: relative; z-index: 2; max-width: 70%; margin-top: 17px; font-size: clamp(1rem,2.2vw,2.05rem); font-weight: 590; letter-spacing: -.04em; line-height: 1.12; }
+.certificatePlaceholder small { position: relative; z-index: 2; margin-top: 11px; color: #666c77; font-size: .68rem; }
+
+.galleryMeta { display: grid; position: relative; z-index: 30; grid-template-columns: 46px minmax(0,1fr) 46px; gap: 18px; align-items: center; }
+.galleryMeta > button { display: grid; width: 46px; height: 46px; place-items: center; border: 1px solid var(--line-strong); border-radius: 50%; background: #05070a; color: #c3cad6; font-size: 1rem; cursor: pointer; }
+.galleryMeta > button:hover { border-color: rgba(113,144,255,.55); color: #a9b8ff; }
+.activeCopy { min-width: 0; text-align: center; }
+.activeCopy span { color: #7387e0; font-family: var(--font-mono); font-size: .5rem; letter-spacing: .08em; }
+.activeCopy h3 { margin-top: 9px; font-size: clamp(1.25rem,2.4vw,2rem); font-weight: 590; letter-spacing: -.04em; }
+.activeCopy p { margin-top: 7px; color: var(--paper-dim); font-size: .68rem; }
+
+.progress { display: flex; justify-content: center; gap: 5px; margin-top: 24px; }
+.progress button { width: 18px; height: 3px; padding: 0; border: 0; border-radius: 99px; background: #252a35; cursor: pointer; transition: width 180ms ease, background 180ms ease; }
+.progress .activeDot { width: 34px; background: #7190ff; }
+.verifyLink { display: flex; width: max-content; margin: 25px auto 0; align-items: center; gap: 7px; color: #8d97aa; font-size: .62rem; text-decoration: none; }
+.verifyLink:hover { color: #a9b8ff; }
+
+@media (max-width: 760px) {
+  .header { grid-template-columns: 1fr; gap: 24px; }
+  .header > p { font-size: .96rem; line-height: 1.6; }
+  .coverFlow { margin-top: 34px; }
+  .stage { height: 320px; min-height: 0; }
+  .coverCard { width: min(82vw, 600px); transform: translate(-50%,-50%) translateX(calc(var(--offset) * 68%)) translateZ(calc(var(--distance) * -80px)) rotateY(calc(var(--offset) * -7deg)) scale(calc(1 - var(--distance) * .15)); }
+  .certificatePlaceholder::before { inset: 10px; }
+  .certificatePlaceholder::after { inset: 15px; }
+  .seal { width: 42px; height: 42px; margin-bottom: 10px; font-size: .5rem; }
+  .certificatePlaceholder strong { margin-top: 10px; font-size: clamp(.8rem,3.8vw,1.25rem); }
+  .certificatePlaceholder small { margin-top: 7px; font-size: .48rem; }
+  .galleryMeta { grid-template-columns: 42px minmax(0,1fr) 42px; gap: 8px; }
+  .galleryMeta > button { width: 42px; height: 42px; }
+  .progress { flex-wrap: wrap; padding-inline: 24px; }
+  .activeCopy h3 { font-size: 1.18rem; line-height: 1.15; }
+}
