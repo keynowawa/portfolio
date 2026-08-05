@@ -46,10 +46,10 @@ export default function HeroTerminal() {
       <div className={styles.terminal}>
         <nav className={styles.terminalNav} aria-label="Portfolio navigation">
           <a href="#about">About</a>
-          <a href="#projects">Projects</a>
+          <a href="#projects">Work</a>
           <a href="#journey">Story</a>
           <a href="#toolkit">Stack</a>
-          <a href="#credentials">Certificates</a>
+          <a href="#credentials">Certs</a>
           <a href="#contact">Contact</a>
         </nav>
 
@@ -57,7 +57,7 @@ export default function HeroTerminal() {
           <h1 id="hero-title">Kyann Tagle</h1>
           <p className={styles.role}>Data Science, Cryptography, Full Stack Developer</p>
 
-          <div className={styles.commentTerminal} aria-live="polite">
+          <div className={styles.commentTerminal} aria-hidden="true">
             <span className={styles.commentPrompt} aria-hidden="true">&gt;</span>
             <code>{commentText}</code>
             <i className={styles.commentCursor} aria-hidden="true" />

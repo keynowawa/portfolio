@@ -4,9 +4,9 @@
 
 .header {
   display: grid;
-  grid-template-columns: 1fr 0.7fr;
-  gap: 50px;
-  margin-bottom: 64px;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 44px;
+  margin-bottom: 56px;
   align-items: end;
 }
 
@@ -15,14 +15,14 @@
   padding-bottom: 6px;
   color: var(--paper-dim);
   font-family: var(--font-sans);
-  font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+  font-size: clamp(1.02rem, 1.4vw, 1.3rem);
   line-height: 1.45;
 }
 
 .projectGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  gap: 18px;
 }
 
 .projectCard {
@@ -216,7 +216,7 @@
 }
 
 .links { margin-top: 22px; }
-.links a { display: inline-flex; min-height: 39px; flex: 1; align-items: center; justify-content: center; gap: 7px; border: 1px solid var(--line-strong); font-family: var(--font-mono); font-size: 0.58rem; text-decoration: none; }
+.links a { display: inline-flex; min-height: 44px; flex: 1; align-items: center; justify-content: center; gap: 7px; border: 1px solid var(--line-strong); font-family: var(--font-mono); font-size: 0.58rem; text-decoration: none; }
 .links a:first-child { border-color: var(--signal); background: var(--signal); color: var(--ink); }
 .links a:hover { background: var(--paper); color: var(--ink); }
 
@@ -246,8 +246,8 @@
 .experiments {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
-  gap: 60px;
-  margin-top: 82px;
+  gap: 48px;
+  margin-top: 70px;
   padding-top: 28px;
   border-top: 1px solid var(--line-strong);
 }

@@ -158,10 +158,8 @@
     border-radius: 19px;
     margin-top: 0;
   }
-  .terminalNav { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .terminalNav a:nth-child(3),
-  .terminalNav a:nth-child(5) { display: none; }
-  .terminalNav a { font-size: .62rem; }
+  .terminalNav { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .terminalNav a { font-size: .54rem; }
   .terminalMain { padding: 30px 20px 44px; }
   .terminalMain h1 { font-size: clamp(3rem, 14.3vw, 4.2rem); }
   .role { max-width: 310px; margin-top: 22px; line-height: 1.6; }

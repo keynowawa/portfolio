@@ -6,8 +6,8 @@
 .inner {
   display: grid;
   grid-template-columns: 1.25fr 1fr 0.75fr;
-  gap: 54px;
-  padding-block: 68px 28px;
+  gap: 42px;
+  padding-block: 60px 28px;
 }
 
 .signature {
@@ -57,7 +57,7 @@
 .external a {
   display: flex;
   align-items: center;
-  min-height: 38px;
+  min-height: 44px;
   border-bottom: 1px solid var(--line);
   color: var(--paper);
   font-family: var(--font-mono);
@@ -107,9 +107,6 @@
 }
 
 @media (max-width: 560px) {
-  .footer {
-    padding-bottom: 74px;
-  }
   .inner {
     grid-template-columns: 1fr;
     gap: 38px;

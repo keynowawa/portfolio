@@ -18,7 +18,7 @@ export default function MasterFooter() {
           <span className={styles.mark}>KT</span>
           <div>
             <strong>{profile.fullName}</strong>
-            <span>Product-minded developer · Manila</span>
+            <span>Full-stack developer · Manila</span>
           </div>
         </div>
 

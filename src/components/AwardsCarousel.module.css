@@ -1,12 +1,12 @@
 .credentialsSection { overflow: hidden; border-bottom: 1px solid var(--line); }
-.header { display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: end; }
+.header { display: grid; grid-template-columns: 1.1fr .9fr; gap: 44px; align-items: end; }
 .header > p { max-width: 510px; padding-bottom: 7px; color: var(--paper-dim); font-size: 1rem; line-height: 1.7; }
 
-.coverFlow { position: relative; margin-top: 62px; }
+.coverFlow { position: relative; margin-top: 52px; }
 .stage {
   position: relative;
-  height: min(52vw, 600px);
-  min-height: 430px;
+  height: min(46vw, 540px);
+  min-height: 400px;
   overflow: hidden;
   perspective: 1500px;
   perspective-origin: 50% 46%;
@@ -38,7 +38,7 @@
   position: absolute;
   top: 48%;
   left: 50%;
-  width: min(58vw, 720px);
+  width: min(54vw, 660px);
   padding: 0;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,.18);
@@ -88,9 +88,10 @@
 .activeCopy h3 { margin-top: 9px; font-size: clamp(1.25rem,2.4vw,2rem); font-weight: 590; letter-spacing: -.04em; }
 .activeCopy p { margin-top: 7px; color: var(--paper-dim); font-size: .68rem; }
 
-.progress { display: flex; justify-content: center; gap: 5px; margin-top: 24px; }
-.progress button { width: 18px; height: 3px; padding: 0; border: 0; border-radius: 99px; background: #252a35; cursor: pointer; transition: width 180ms ease, background 180ms ease; }
-.progress .activeDot { width: 34px; background: #7190ff; }
+.progress { display: flex; justify-content: center; gap: 1px; margin-top: 18px; }
+.progress button { display: grid; width: 24px; height: 24px; padding: 0; place-items: center; border: 0; background: transparent; cursor: pointer; }
+.progress button::after { width: 16px; height: 3px; border-radius: 99px; background: #252a35; content: ""; transition: width 180ms ease, background 180ms ease; }
+.progress .activeDot::after { width: 22px; background: #7190ff; }
 .verifyLink { display: flex; width: max-content; margin: 25px auto 0; align-items: center; gap: 7px; color: #8d97aa; font-size: .62rem; text-decoration: none; }
 .verifyLink:hover { color: #a9b8ff; }
 

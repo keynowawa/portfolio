@@ -5,7 +5,7 @@ export const profile = {
   fullName: 'Jel Kyann J. Tagle',
   handle: 'keynowawa',
   location: 'Manila, Philippines',
-  role: 'Product-minded developer',
+  role: 'I build stuff. Useful stuff, mostly.',
   education: 'BS Computer Science, Adamson University',
   status: 'Open to internships and collaborations',
   email: 'info.keyno@gmail.com',
@@ -15,7 +15,7 @@ export const profile = {
 };
 
 export const heroCommands = [
-  { command: 'whoami', response: 'Kyann — CS student, developer, and product-minded builder.' },
+  { command: 'whoami', response: 'Kyann — CS student and developer who likes shipping useful things.' },
   { command: 'what_do_you_make?', response: 'Useful web apps, weird little experiments, and tools I wish already existed.' },
   { command: 'currently', response: 'Studying at Adamson, shipping projects, and learning as I go.' },
 ];

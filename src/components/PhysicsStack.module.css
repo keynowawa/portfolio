@@ -7,7 +7,7 @@
 .header {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  gap: 60px;
+  gap: 44px;
   align-items: end;
 }
 
@@ -16,12 +16,12 @@
   padding-bottom: 8px;
   color: var(--paper-dim);
   font-family: var(--font-sans);
-  font-size: clamp(1.1rem, 2vw, 1.65rem);
-  line-height: 1.4;
+  font-size: clamp(1.02rem, 1.4vw, 1.3rem);
+  line-height: 1.5;
 }
 
 .toolkitRows {
-  margin-top: 66px;
+  margin-top: 54px;
   overflow: hidden;
   border: 1px solid var(--line-strong);
   border-radius: 20px;
@@ -30,7 +30,7 @@
 
 .toolkitRows article {
   display: grid;
-  grid-template-columns: 250px minmax(0, 1fr);
+  grid-template-columns: 230px minmax(0, 1fr);
   min-height: 126px;
   border-bottom: 1px solid var(--line-strong);
   align-items: stretch;
@@ -139,7 +139,7 @@
 
   .ticker {
     min-height: 72px;
-    margin-inline: -16px;
+    margin-inline: 0;
   }
 }
 
