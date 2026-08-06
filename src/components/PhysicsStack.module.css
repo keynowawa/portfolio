@@ -89,9 +89,9 @@
   padding-inline: 15px;
   align-items: center;
   gap: 9px;
-  border: 1px solid rgba(139, 179, 255, 0.35);
+  border: 1px solid rgba(41, 151, 255, 0.35);
   border-radius: 999px;
-  background: rgba(91, 140, 255, 0.07);
+  background: rgba(41, 151, 255, 0.07);
   color: var(--paper);
   font-family: var(--font-mono);
   font-size: 0.62rem;

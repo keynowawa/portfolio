@@ -20,16 +20,17 @@
   border: 1px solid rgba(255,255,255,.15);
   border-radius: 22px;
   background: #07090d;
-  box-shadow: 0 42px 120px rgba(0,0,0,.75), 0 0 70px rgba(70,99,255,.07), inset 0 1px rgba(255,255,255,.045);
+  box-shadow: 0 42px 120px rgba(0,0,0,.75), 0 0 70px rgba(41,151,255,.07), inset 0 1px rgba(255,255,255,.045);
   animation: terminalEnter 700ms cubic-bezier(.2,.8,.2,1) both;
   margin-top: max(48px, calc((100svh - clamp(480px, 60svh, 540px)) / 2 - 18px));
+  overflow-anchor: none;
 }
 
 .terminal::after {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  box-shadow: inset 0 0 65px rgba(89,112,255,.025);
+  box-shadow: inset 0 0 65px rgba(41,151,255,.025);
   content: "";
   pointer-events: none;
 }
@@ -61,7 +62,7 @@
   bottom: 8px;
   left: 28%;
   height: 1px;
-  background: #7190ff;
+  background: var(--signal);
   content: "";
   opacity: 0;
   transform: scaleX(.35);
@@ -69,7 +70,7 @@
 }
 
 .terminalNav a:hover,
-.terminalNav a:focus-visible { color: #a9b8ff; }
+.terminalNav a:focus-visible { color: var(--signal-bright); }
 .terminalNav a:hover::after,
 .terminalNav a:focus-visible::after { opacity: 1; transform: scaleX(1); }
 
@@ -104,28 +105,18 @@
 .commentTerminal {
   display: flex;
   width: min(100%, 650px);
-  min-height: 32px;
+  height: 36px;
   margin-top: 40px;
   align-items: baseline;
   justify-content: center;
-  color: #87a0ff;
+  overflow: hidden;
+  color: #5eb1ff;
   font-family: var(--font-mono);
-}
-
-.commentPrompt {
-  width: 18px;
-  margin-right: 8px;
-  flex: 0 0 18px;
-  color: #5878f2;
-  font-size: .76rem;
-  font-weight: 700;
-  line-height: 1.55;
-  text-align: center;
 }
 
 .commentTerminal code {
   overflow-wrap: anywhere;
-  color: #91a8ff;
+  color: #70baff;
   font-size: clamp(.61rem, .95vw, .76rem);
   line-height: 1.55;
 }
@@ -135,49 +126,199 @@
   height: 15px;
   margin-left: 4px;
   flex: 0 0 auto;
-  background: #7190ff;
-  box-shadow: 0 0 12px rgba(113,144,255,.6);
+  background: var(--signal);
+  box-shadow: 0 0 12px rgba(41,151,255,.62);
   animation: blink 760ms steps(2,end) infinite;
 }
 
+.askArea {
+  position: relative;
+  width: min(100%, 420px);
+  margin-top: 22px;
+  overflow-anchor: none;
+  text-align: center;
+}
+
+.askLine {
+  position: relative;
+  min-height: 48px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 15px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022)),
+    rgba(8,11,16,.86);
+  box-shadow: inset 0 1px rgba(255,255,255,.065), 0 14px 38px rgba(0,0,0,.28), 0 0 0 1px rgba(0,0,0,.18);
+  backdrop-filter: blur(20px) saturate(125%);
+  transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease, transform 220ms cubic-bezier(.2,.8,.2,1);
+}
+
+.askLine::before {
+  position: absolute;
+  top: 0;
+  right: 14%;
+  left: 14%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.11), transparent);
+  content: "";
+  pointer-events: none;
+}
+
+.askLine:focus-within {
+  border-color: rgba(41,151,255,.46);
+  background: linear-gradient(180deg, rgba(41,151,255,.055), rgba(255,255,255,.02)), rgba(8,11,16,.9);
+  box-shadow: inset 0 1px rgba(255,255,255,.075), 0 14px 40px rgba(0,0,0,.3), 0 0 0 3px rgba(41,151,255,.065);
+}
+
+.askLine input {
+  width: 100%;
+  height: 46px;
+  min-width: 0;
+  padding: 0 22px 0 55px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #dce6f3;
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .01em;
+  text-align: left;
+}
+
+.askLine input::placeholder { color: #737f90; opacity: 1; }
+
+.askLine button {
+  display: grid;
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: #718096;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, transform 180ms cubic-bezier(.2,.8,.2,1), border-color 160ms ease;
+}
+
+.askLine button:hover:not(:disabled),
+.askLine button:focus-visible {
+  background: rgba(41,151,255,.08);
+  color: var(--signal-bright);
+  transform: scale(1.035);
+}
+
+.askLine button:disabled { color: #586577; cursor: default; }
+.answering .askLine button svg { animation: searchThink 900ms cubic-bezier(.5,0,.5,1) infinite; }
+
+.askAnswer {
+  display: grid;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  min-height: 54px;
+  padding-top: 12px;
+  place-items: center;
+  color: #929dad;
+  font-family: var(--font-mono);
+  font-size: .58rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.askAnswer:empty { visibility: hidden; }
+.askAnswer p { display: -webkit-box; min-width: 0; overflow: hidden; text-wrap: balance; animation: answerIn 320ms cubic-bezier(.2,.8,.2,1) both; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+.askAnswer a { color: var(--signal-bright); text-underline-offset: 3px; }
+.answerActions { display: inline-flex; margin-left: 4px; align-items: baseline; gap: 3px; white-space: nowrap; }
+.answerActions i { margin: 0; color: #536074; font-style: normal; }
+.answerLeaving { opacity: 0; transform: translateY(-3px); transition: opacity 500ms ease, transform 500ms ease; }
+
+.answerLoader {
+  display: flex;
+  height: 18px;
+  align-items: center;
+  gap: 4px;
+}
+
+.answerLoader i {
+  width: 3px;
+  height: 7px;
+  margin: 0;
+  border-radius: 1px;
+  background: var(--signal-bright);
+  box-shadow: 0 0 8px rgba(41,151,255,.45);
+  animation: answerPulse 900ms ease-in-out infinite;
+}
+
+.answerLoader i:nth-child(2) { animation-delay: 110ms; }
+.answerLoader i:nth-child(3) { animation-delay: 220ms; }
+
 @keyframes terminalEnter { from { opacity: 0; transform: translateY(20px) scale(.985); } }
 @keyframes blink { 50% { opacity: 0; } }
+@keyframes searchThink { 50% { color: #fff; transform: rotate(-8deg) scale(.92); } }
+@keyframes answerPulse { 0%, 100% { height: 4px; opacity: .4; } 50% { height: 13px; opacity: 1; } }
+@keyframes answerIn { from { opacity: 0; transform: translateY(4px); } }
 
 @media (max-width: 720px) {
   .hero {
     min-height: 100svh;
     min-height: 100dvh;
-    padding: 24px 8px;
+    padding: 24px 18px 48px;
     place-items: center;
   }
   .terminal {
-    width: 100%;
-    height: min(560px, calc(100dvh - 48px));
+    width: min(100%, 620px);
+    height: clamp(480px, calc(100dvh - 200px), 680px);
     min-height: 0;
-    grid-template-rows: 54px 1fr;
-    border-radius: 19px;
+    grid-template-rows: 58px 1fr;
+    border-radius: 20px;
     margin-top: 0;
   }
-  .terminalNav { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-  .terminalNav a { font-size: .54rem; }
-  .terminalMain { padding: 30px 20px 44px; }
-  .terminalMain h1 { font-size: clamp(3rem, 14.3vw, 4.2rem); }
-  .role { max-width: 310px; margin-top: 22px; line-height: 1.6; }
-  .commentTerminal { min-height: 58px; margin-top: 34px; padding-inline: 8px; align-items: baseline; text-align: left; }
+  .terminalNav {
+    grid-template-columns: repeat(4, minmax(44px, 1fr));
+    padding-inline: 10px;
+  }
+  .terminalNav a { min-height: 44px; font-size: .62rem; letter-spacing: -.01em; }
+  .terminalNav a::after { right: 31%; bottom: 7px; left: 31%; }
+  .terminalNav .secondaryNavItem { display: none; }
+  .terminalMain { padding: 28px 20px 38px; justify-content: center; text-align: center; }
+  .terminalMain h1 { font-size: clamp(2.75rem, 12.5vw, 3.5rem); }
+  .role { max-width: 310px; margin-top: 16px; line-height: 1.5; }
+  .commentTerminal { width: min(100%, 300px); height: 42px; margin-top: 22px; padding-inline: 8px; align-items: baseline; justify-content: center; text-align: center; }
+  .askArea { width: min(100%, 300px); margin-top: 15px; }
+  .askLine { min-height: 46px; border-radius: 14px; }
+  .askLine input { height: 44px; padding: 0 16px 0 48px; font-size: .62rem; }
+  .askLine button { top: 3px; left: 5px; width: 38px; height: 38px; border-radius: 11px; }
+  .askAnswer { padding-top: 8px; font-size: .56rem; }
+  .hero:focus-within { min-height: 620px; }
 }
 
 @media (min-width: 721px) and (max-width: 1024px) {
   .hero {
     min-height: 100svh;
     min-height: 100dvh;
+    padding: 40px 32px 56px;
+    place-items: center;
   }
 
   .terminal {
     width: min(100%, 820px);
+    height: clamp(600px, calc(100dvh - 220px), 900px);
+    margin-top: 0;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .terminal,
-  .commentCursor { animation: none; }
+  .commentCursor,
+  .answering .askLine button svg,
+  .answerLoader i,
+  .askAnswer p { animation: none; }
+
+  .answerLeaving { transition: none; }
 }

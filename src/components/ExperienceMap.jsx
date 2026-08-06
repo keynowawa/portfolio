@@ -54,7 +54,7 @@ export default function ExperienceMap() {
     <section ref={sectionRef} id="journey" className={`${styles.journey} container section-padding`} aria-labelledby="journey-title">
       <div className={styles.header}>
         <div>
-          <span className="section-kicker">03 / SO FAR...</span>
+          <span className="section-kicker"><span>03</span><span>So far</span></span>
           <h2 id="journey-title" className="section-title">How I got here.</h2>
         </div>
         <p>A quick trip through the things I built, the teams I helped, and what I’m still figuring out.</p>

@@ -1,111 +1,286 @@
 .wayfinder {
-  display: flex;
+  --rail-surface: rgba(17,22,30,.97);
+  display: block;
   position: fixed;
   top: 50%;
   right: 20px;
   z-index: 900;
-  flex-direction: column;
-  gap: 9px;
-  padding: 14px 11px;
-  border: 1px solid rgba(255,255,255,.11);
-  border-radius: 999px;
-  background: rgba(5,7,10,.82);
-  box-shadow: 0 18px 50px rgba(0,0,0,.5), inset 0 1px rgba(255,255,255,.035);
-  backdrop-filter: blur(20px);
+  width: 44px;
+  height: var(--rail-height, 208px);
   opacity: 0;
   pointer-events: none;
+  touch-action: none;
   transform: translate(20px,-50%);
-  transition: opacity 220ms ease, transform 220ms ease;
+  transition: height 520ms cubic-bezier(.22,1,.36,1),
+    opacity 220ms ease,
+    transform 360ms cubic-bezier(.22,1,.36,1),
+    filter 300ms ease;
+  user-select: none;
+  isolation: isolate;
 }
 
 .visible {
-  opacity: 1;
+  opacity: .62;
   pointer-events: auto;
   transform: translate(0,-50%);
+}
+
+.visible:hover,
+.visible:focus-within {
+  opacity: 1;
+  transform: translate(0,-50%) scale(1.025);
+}
+
+.pressing,
+.dragging {
+  opacity: 1;
+}
+
+.morphing,
+.between,
+.pressing,
+.dragging {
+  filter: drop-shadow(0 18px 30px rgba(0,0,0,.34));
+}
+
+.dragging {
+  cursor: grabbing;
+  transform: translate(0,-50%) scale(1.045);
+}
+
+.railSegment {
+  display: flex;
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  width: 44px;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 7px;
+  overflow: visible;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  background: var(--rail-surface);
+  box-shadow: 0 18px 50px rgba(0,0,0,.46), inset 0 1px rgba(255,255,255,.09), inset 0 -1px rgba(255,255,255,.025);
+  backdrop-filter: blur(24px) saturate(145%);
+  transition: top 520ms cubic-bezier(.22,1,.36,1),
+    height 520ms cubic-bezier(.22,1,.36,1),
+    opacity 180ms ease,
+    background 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.railSegment:empty {
+  display: none;
+}
+
+.railBefore {
+  top: 0;
+  height: var(--before-height, 0px);
+}
+
+.railAfter {
+  top: var(--after-top, 52px);
+  height: var(--after-height, 0px);
 }
 
 .wayfinder a {
   display: flex;
   position: relative;
-  min-height: 18px;
-  justify-content: flex-end;
+  z-index: 2;
+  width: 28px;
+  min-height: 28px;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
   text-decoration: none;
 }
 
 .wayfinder span {
   position: absolute;
-  right: 25px;
-  padding: 6px 9px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(5,7,10,.96);
-  color: #aab1bf;
+  right: 40px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+  background: rgba(16,20,28,.96);
+  box-shadow: 0 10px 28px rgba(0,0,0,.38), inset 0 1px rgba(255,255,255,.06);
+  color: #c2cad6;
   font-family: var(--font-sans);
-  font-size: .6rem;
+  font-size: .62rem;
   opacity: 0;
-  transform: translateX(8px);
-  transition: opacity 150ms ease, transform 150ms ease;
+  transform: translateX(7px) scale(.96);
+  transition: opacity 150ms ease, transform 180ms cubic-bezier(.2,.8,.2,1);
   white-space: nowrap;
 }
 
-.wayfinder i {
+.wayfinder a i {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #4f586b;
-  transition: transform 150ms ease, background 150ms ease, box-shadow 150ms ease;
+  background: #5c6779;
+  transition: transform 200ms cubic-bezier(.2,.9,.2,1.35), background 150ms ease, box-shadow 150ms ease;
 }
 
 .wayfinder a:hover span,
 .wayfinder a:focus-visible span {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateX(0) scale(1);
 }
 
-.wayfinder a[aria-current='location'] i {
-  background: #7190ff;
-  box-shadow: 0 0 13px rgba(113,144,255,.72);
-  transform: scale(1.55);
+.wayfinder a:hover i,
+.wayfinder a:focus-visible i {
+  background: var(--signal-bright);
+  box-shadow: 0 0 12px rgba(41,151,255,.46);
+  transform: scale(1.8);
+}
+
+.activeBubble {
+  display: block;
+  position: absolute;
+  top: var(--circle-top, 0px);
+  left: 0;
+  z-index: 4;
+  width: 44px;
+  height: 44px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 50%;
+  background: var(--rail-surface);
+  box-shadow: 0 10px 26px rgba(0,0,0,.46), inset 0 1px rgba(255,255,255,.12);
+  cursor: grab;
+  pointer-events: auto;
+  touch-action: none;
+  transition: top 520ms cubic-bezier(.22,1,.36,1),
+    height 420ms cubic-bezier(.22,1,.36,1),
+    border-color 240ms ease,
+    border-radius 420ms cubic-bezier(.22,1,.36,1),
+    background 300ms ease,
+    box-shadow 300ms ease,
+    transform 420ms cubic-bezier(.22,1,.36,1),
+    filter 300ms ease;
+}
+
+.activeBubble::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 12px rgba(41,151,255,.74);
+  transform: translate(-50%,-50%);
+  transition: transform 360ms cubic-bezier(.22,1,.36,1), box-shadow 260ms ease;
+}
+
+.liquidBridge {
+  position: absolute;
+  left: 0;
+  z-index: 3;
+  width: 44px;
+  height: 16px;
+  background: var(--rail-surface);
+  clip-path: polygon(14% 0, 86% 0, 76% 14%, 69% 30%, 65% 50%, 69% 70%, 76% 86%, 86% 100%, 14% 100%, 24% 86%, 31% 70%, 35% 50%, 31% 30%, 24% 14%);
+  opacity: 0;
+  pointer-events: none;
+  transform: scaleY(.2);
+  transition: top 520ms cubic-bezier(.22,1,.36,1), opacity 150ms ease, transform 360ms cubic-bezier(.22,1,.36,1);
+}
+
+.bridgeBefore {
+  top: calc(var(--circle-top) - 12px);
+  transform-origin: center bottom;
+}
+
+.bridgeAfter {
+  top: calc(var(--circle-top) + 40px);
+  transform-origin: center top;
+}
+
+.wayfinder[data-edge='first'] .bridgeBefore,
+.wayfinder[data-edge='last'] .bridgeAfter {
+  display: none;
+}
+
+.morphing .activeBubble,
+.between .activeBubble,
+.pressing .activeBubble,
+.dragging .activeBubble {
+  top: var(--circle-top);
+  height: 44px;
+  border-color: transparent;
+  border-radius: 50%;
+  background: var(--rail-surface);
+  box-shadow: none;
+  cursor: grabbing;
+  filter: saturate(1.08);
+}
+
+.morphing .activeBubble::before,
+.between .activeBubble::before,
+.pressing .activeBubble::before,
+.dragging .activeBubble::before {
+  box-shadow: 0 0 16px rgba(41,151,255,.88);
+  transform: translate(-50%,-50%) scale(1.12);
+}
+
+.morphing .liquidBridge,
+.between .liquidBridge,
+.pressing .liquidBridge,
+.dragging .liquidBridge {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.morphing .railBefore:not(:empty),
+.between .railBefore:not(:empty),
+.pressing .railBefore:not(:empty),
+.dragging .railBefore:not(:empty) {
+  height: var(--before-height);
+  border-radius: 999px;
+}
+
+.morphing .railAfter:not(:empty),
+.between .railAfter:not(:empty),
+.pressing .railAfter:not(:empty),
+.dragging .railAfter:not(:empty) {
+  top: var(--after-top);
+  height: var(--after-height);
+  border-radius: 999px;
+}
+
+.morphing .railSegment,
+.between .railSegment,
+.pressing .railSegment,
+.dragging .railSegment {
+  background: var(--rail-surface);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.dragging .activeBubble,
+.dragging .railSegment,
+.dragging .liquidBridge {
+  transition-duration: 150ms, 150ms, 180ms, 180ms, 180ms, 180ms, 180ms;
 }
 
 @media (max-width: 1024px) {
   .wayfinder { right: max(12px, env(safe-area-inset-right)); }
 }
 
-@media (max-width: 760px) {
-  .wayfinder {
-    gap: 0;
-    padding: 7px 0;
-    border: 0;
-    background: transparent;
-    box-shadow: none;
-    backdrop-filter: none;
-  }
+@media (hover: none) {
+  .visible { opacity: .76; }
+  .visible:focus-within,
+  .pressing,
+  .dragging { opacity: 1; }
+}
 
-  .wayfinder::before {
-    position: absolute;
-    top: 0;
-    right: 3px;
-    bottom: 0;
-    z-index: 0;
-    width: 30px;
-    border: 1px solid rgba(255,255,255,.11);
-    border-radius: 999px;
-    background: rgba(5,7,10,.86);
-    box-shadow: 0 18px 50px rgba(0,0,0,.5), inset 0 1px rgba(255,255,255,.035);
-    backdrop-filter: blur(20px);
-    content: "";
-    pointer-events: none;
+@media (prefers-reduced-motion: reduce) {
+  .wayfinder,
+  .wayfinder *,
+  .wayfinder *::before,
+  .wayfinder *::after {
+    transition-duration: .01ms !important;
   }
-
-  .wayfinder a {
-    z-index: 1;
-    width: 36px;
-    min-height: 28px;
-    padding-right: 15px;
-  }
-
-  .wayfinder span { right: 44px; }
 }

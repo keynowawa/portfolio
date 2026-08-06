@@ -1,183 +1,246 @@
 .contactSection {
-  padding-bottom: 60px;
+  padding-bottom: clamp(72px, 8vw, 110px);
 }
 
-.console {
-  position: relative;
+.contactWindow {
+  width: min(100%, 960px);
+  margin-inline: auto;
   overflow: hidden;
-  border: 1px solid var(--line-strong);
-  border-radius: 28px;
-  background:
-    radial-gradient(circle at 88% 0%, rgba(111,140,255,.2), transparent 34%),
-    rgba(255,255,255,.025);
-  box-shadow: 0 34px 90px rgba(0,0,0,.32), inset 0 1px rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 22px;
+  background: #07090d;
+  box-shadow: 0 42px 120px rgba(0,0,0,.55), 0 0 70px rgba(41,151,255,.045), inset 0 1px rgba(255,255,255,.045);
 }
 
-.console::after {
-  position: absolute;
-  top: -120px;
-  right: -80px;
-  width: 360px;
-  height: 360px;
-  border: 1px solid rgba(111,140,255,.45);
-  border-radius: 50%;
-  box-shadow: 0 0 0 45px var(--signal-soft), 0 0 0 46px var(--line);
-  opacity: 0.4;
-  content: "";
-}
-
-.consoleTop {
-  display: flex;
-  position: relative;
-  z-index: 2;
-  justify-content: space-between;
-  padding: 14px 18px;
-  border-bottom: 1px solid var(--line);
-  font-family: var(--font-mono);
-  font-size: 0.57rem;
-  letter-spacing: 0.1em;
-}
-
-.contactGrid {
+.windowBody {
   display: grid;
-  position: relative;
-  z-index: 2;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: clamp(40px, 6vw, 82px);
-  padding: clamp(42px, 6vw, 78px);
+  grid-template-columns: minmax(0, 1.12fr) minmax(300px, .88fr);
+  gap: clamp(42px, 7vw, 84px);
+  padding: clamp(48px, 7vw, 76px);
   align-items: end;
 }
 
-.contactGrid h2 {
-  margin-top: 34px;
-  font-size: clamp(4rem, 7.4vw, 7.7rem);
-  font-weight: 650;
-  letter-spacing: -0.09em;
-  line-height: 0.78;
+.intro h2 {
+  margin-top: 24px;
+  color: #f5f6f8;
+  font-size: clamp(3.3rem, 6.4vw, 5.6rem);
+  font-weight: 620;
+  letter-spacing: -.075em;
+  line-height: .94;
 }
 
-.contactGrid h2 span {
-  color: var(--signal);
+.intro h2 span {
+  color: #9099a8;
 }
 
-.invitation p {
-  max-width: 480px;
-  color: var(--paper-dim);
-  font-family: var(--font-sans);
-  font-size: clamp(1.3rem, 2.3vw, 2.1rem);
-  line-height: 1.35;
+.intro > p {
+  max-width: 570px;
+  margin-top: 28px;
+  color: #9ba2b0;
+  font-size: clamp(.95rem, 1.35vw, 1.08rem);
+  line-height: 1.7;
 }
 
-.emailLink {
-  display: flex;
-  max-width: 480px;
-  justify-content: space-between;
-  margin-top: 42px;
-  padding-block: 14px;
-  border-bottom: 1px solid var(--signal);
+.actions {
+  display: grid;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 17px;
+  background: linear-gradient(180deg, rgba(255,255,255,.052), rgba(255,255,255,.02)), rgba(8,11,16,.88);
+  box-shadow: inset 0 1px rgba(255,255,255,.06), 0 16px 42px rgba(0,0,0,.28);
+}
+
+.resumeDownload,
+.emailAction {
+  display: grid;
+  min-width: 0;
+  padding: 15px 17px;
+  grid-template-columns: 38px 1fr;
+  gap: 12px;
   align-items: center;
-  color: var(--signal);
+  text-decoration: none;
+  transition: background 180ms ease;
+}
+
+.resumeDownload {
+  min-height: 68px;
+  border-bottom: 1px solid rgba(255,255,255,.09);
+}
+
+.emailAction {
+  min-height: 82px;
+}
+
+.resumeDownload:hover,
+.resumeDownload:focus-visible,
+.emailAction:hover,
+.emailAction:focus-visible {
+  background: rgba(41,151,255,.055);
+}
+
+.actionIcon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 10px;
+  background: rgba(255,255,255,.045);
+  color: #8f9aac;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.resumeDownload:hover .actionIcon,
+.resumeDownload:focus-visible .actionIcon,
+.emailAction:hover .actionIcon,
+.emailAction:focus-visible .actionIcon {
+  background: rgba(41,151,255,.1);
+  color: var(--signal-bright);
+}
+
+.actionCopy {
+  display: grid;
+  min-width: 0;
+  gap: 1px;
+}
+
+.actionCopy strong {
+  overflow: hidden;
+  color: #e2e7ee;
   font-family: var(--font-mono);
-  font-size: clamp(0.72rem, 1.3vw, 1rem);
-  text-decoration: none;
+  font-size: clamp(.66rem, 1vw, .78rem);
+  font-weight: 560;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.contactNav {
+.actionCopy small {
+  color: #6f7989;
+  font-family: var(--font-mono);
+  font-size: .59rem;
+}
+
+.channels {
   display: grid;
-  position: relative;
-  z-index: 2;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--line-strong);
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid rgba(255,255,255,.1);
 }
 
-.contactNav a {
+.channels a {
   display: grid;
-  grid-template-columns: 24px 1fr;
-  gap: 2px 10px;
-  min-height: 100px;
-  padding: 24px;
-  border-right: 1px solid var(--line-strong);
-  align-content: center;
+  min-width: 0;
+  min-height: 82px;
+  padding: 17px 22px;
+  grid-template-columns: 34px 1fr;
+  gap: 12px;
+  border-right: 1px solid rgba(255,255,255,.1);
+  align-items: center;
   text-decoration: none;
-  transition: background 160ms ease, color 160ms ease;
+  transition: background 180ms ease;
 }
 
-.contactNav a:last-child {
+.channels a:last-child {
   border-right: 0;
 }
 
-.contactNav span {
+.channelIcon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  color: #7f8a9b;
+  transition: color 180ms ease, transform 200ms cubic-bezier(.2,.8,.2,1);
+}
+
+.channels a > span:last-child {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.channels strong {
+  color: #dce1e9;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-size: .67rem;
+  font-weight: 560;
 }
 
-.contactNav small {
-  grid-column: 2;
-  color: var(--paper-dim);
-  font-size: 0.66rem;
+.channels small {
+  overflow: hidden;
+  color: #6f7989;
+  font-size: .62rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.contactNav a:hover {
-  background: var(--paper);
-  color: var(--ink);
+.channels a:hover,
+.channels a:focus-visible {
+  background: rgba(41,151,255,.045);
 }
 
-.contactNav a:hover small {
-  color: rgba(16, 16, 15, 0.7);
+.channels a:hover .channelIcon,
+.channels a:focus-visible .channelIcon {
+  color: var(--signal-bright);
+  transform: scale(1.05);
 }
 
 @media (max-width: 780px) {
-  .contactGrid {
+  .windowBody {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+
+  .actions {
+    max-width: 520px;
+  }
+
+  .channels {
     grid-template-columns: 1fr;
   }
 
-  .contactNav {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .contactNav a:nth-child(2) {
+  .channels a {
+    min-height: 70px;
     border-right: 0;
+    border-bottom: 1px solid rgba(255,255,255,.1);
   }
 
-  .contactNav a:nth-child(-n + 2) {
-    border-bottom: 1px solid var(--line-strong);
-  }
-
-  .invitation p {
-    font-size: 1.05rem;
-    line-height: 1.55;
+  .channels a:last-child {
+    border-bottom: 0;
   }
 }
 
-@media (max-width: 480px) {
-  .consoleTop span:last-child {
-    display: none;
+@media (max-width: 520px) {
+  .contactSection {
+    padding-bottom: 64px;
   }
 
-  .contactGrid {
-    gap: 38px;
-    padding: 38px 18px;
-  }
-
-  .contactGrid h2 {
-    margin-top: 22px;
-    font-size: clamp(2.8rem, 13vw, 3.7rem);
-    line-height: .88;
-  }
-
-  .contactNav {
-    grid-template-columns: 1fr;
-  }
-
-  .contactNav a {
-    min-height: 68px;
-    padding: 17px;
-    border-right: 0;
-    border-bottom: 1px solid var(--line-strong);
-  }
-
-  .console {
+  .contactWindow {
     border-radius: 20px;
+  }
+
+  .windowBody {
+    gap: 34px;
+    padding: 34px 20px 38px;
+  }
+
+  .intro h2 {
+    margin-top: 20px;
+    font-size: clamp(2.55rem, 12.6vw, 3.4rem);
+    line-height: .96;
+  }
+
+  .intro > p {
+    margin-top: 22px;
+    font-size: .94rem;
+    line-height: 1.65;
+  }
+
+  .resumeDownload,
+  .emailAction {
+    padding-inline: 15px;
+  }
+
+  .channels a {
+    padding-inline: 18px;
   }
 }

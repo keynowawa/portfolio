@@ -42,7 +42,7 @@ export default function PhysicsStack() {
       <div className="container section-padding">
         <div className={styles.header}>
           <div>
-            <span className="section-kicker">04 / MY TOOLBOX</span>
+            <span className="section-kicker"><span>04</span><span>My toolbox</span></span>
             <h2 id="toolkit-title" className="section-title">What I reach for.</h2>
           </div>
           <p>No giant logo cloud—just what I use now, what I’ve tried, and what I want to get better at next.</p>

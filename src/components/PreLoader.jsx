@@ -2,19 +2,8 @@ import { useEffect, useState } from 'react';
 import styles from './PreLoader.module.css';
 
 const bootLines = [
-  '[00:00:00.114] boot::portfolio_kernel — runtime modules verified ........ OK',
-  '[00:00:00.328] load::kyann_tagle.profile — identity graph mounted ...... OK',
-  '[00:00:00.641] index::projects + story + credentials — records ready ... OK',
-  '[00:00:00.902] render::interface — handing control to portfolio .... READY',
-];
-
-const streamLines = [
-  '0x7F11  compile profile.graph',
-  '0x91A4  resolve project.index',
-  '0x0C27  hydrate story.timeline',
-  '0xE318  mount interaction.layer',
-  '0x4B02  connect human.context',
-  '0x2026  launch portfolio',
+  '[00:00.114] boot::kyann.tagle — profile ready',
+  '[00:00.328] launch::portfolio — welcome',
 ];
 
 export default function PreLoader({ onComplete }) {
@@ -44,31 +33,25 @@ export default function PreLoader({ onComplete }) {
 
     const fullText = bootLines.join('\n');
     let character = 0;
-    let streamTimer;
+    let exitTimer;
     const typingTimer = window.setInterval(() => {
-      character += 2;
+      character += 3;
       setText(fullText.slice(0, character));
       if (character >= fullText.length) {
         window.clearInterval(typingTimer);
-        streamTimer = window.setTimeout(() => setPhase('stream'), 90);
+        exitTimer = window.setTimeout(() => setPhase('exit'), 240);
       }
-    }, 16);
+    }, 18);
 
     return () => {
       window.clearInterval(typingTimer);
-      window.clearTimeout(streamTimer);
+      window.clearTimeout(exitTimer);
     };
   }, [onComplete]);
 
   useEffect(() => {
-    if (phase !== 'stream') return undefined;
-    const exitTimer = window.setTimeout(() => setPhase('exit'), 720);
-    return () => window.clearTimeout(exitTimer);
-  }, [phase]);
-
-  useEffect(() => {
     if (phase !== 'exit') return undefined;
-    const completeTimer = window.setTimeout(onComplete, 260);
+    const completeTimer = window.setTimeout(onComplete, 220);
     return () => window.clearTimeout(completeTimer);
   }, [onComplete, phase]);
 
@@ -89,13 +72,7 @@ export default function PreLoader({ onComplete }) {
   return (
     <div className={`${styles.loader} ${phase === 'exit' ? styles.exit : ''}`} role="status" aria-label="Loading Kyann Tagle's portfolio">
       <div className={styles.window}>
-        {phase === 'typing' ? (
-          <pre>{text}<i aria-hidden="true" /></pre>
-        ) : (
-          <div className={styles.stream} aria-hidden="true">
-            {[...streamLines, ...streamLines, ...streamLines].map((line, index) => <code key={`${line}-${index}`}>{line}</code>)}
-          </div>
-        )}
+        <pre>{text}<i aria-hidden="true" /></pre>
       </div>
       <span className={styles.skip}>click, tap, or scroll to skip</span>
     </div>

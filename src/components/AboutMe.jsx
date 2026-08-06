@@ -7,8 +7,8 @@ export default function AboutMe() {
   return (
     <section id="about" className={`${styles.aboutSection} container section-padding`} aria-labelledby="about-title">
       <div className={styles.headingBlock}>
-        <span className="section-kicker">01 / A LITTLE MORE</span>
-        <h2 id="about-title" className="section-title">It usually starts with:<br />“Why is this so annoying?”</h2>
+        <span className="section-kicker"><span>01</span><span>A little more</span></span>
+        <h2 id="about-title" className="section-title">I’m Kyann. I learn best by making things work.</h2>
       </div>
 
       <div className={styles.editorialGrid}>
@@ -20,26 +20,26 @@ export default function AboutMe() {
           <div className={styles.profileDetails}>
             <div className={styles.profileSummary}>
               <p>{profile.role}</p>
-              <span>Usually somewhere between a messy problem, too many tabs, and a working prototype.</span>
             </div>
 
             <div className={styles.profileMeta} aria-label="Profile details">
               <span>{profile.location}</span>
-              <span>BS Computer Science · Adamson University</span>
+              <span>Adamson University</span>
             </div>
 
             <div className={styles.profileActions}>
-              <a className={styles.resumeAction} href={profile.resumeUrl} target="_blank" rel="noreferrer"><Glyph name="download" size={16} /> Résumé</a>
-              <a href={profile.github} target="_blank" rel="noreferrer"><Glyph name="code" size={16} /> GitHub</a>
-              <a href={profile.linkedin} target="_blank" rel="noreferrer"><Glyph name="briefcase" size={16} /> LinkedIn</a>
+              <a className={styles.resumeAction} href={profile.resumeUrl} target="_blank" rel="noreferrer"><Glyph name="resume" size={16} /> Resume</a>
+              <a href={profile.github} target="_blank" rel="noreferrer"><Glyph name="github" size={16} /> GitHub</a>
+              <a href={profile.linkedin} target="_blank" rel="noreferrer"><Glyph name="linkedin" size={16} /> LinkedIn</a>
             </div>
           </div>
         </article>
 
         <div className={styles.story}>
-          <p className={styles.lede}>Hi, I’m Kyann. I turn “there has to be a better way” into working software.</p>
-          <p>I’m drawn to the space where data, privacy, and everyday usability meet. That curiosity has led me to build a local-first class planner, a privacy-aware verification tool, and a POS system designed to keep working across multiple devices—not just polished demos, but tools shaped around how people actually use them.</p>
-          <p>I study Computer Science at Adamson University, but code is only half of how I work. Leading programs for 100+ students, managing organization finances, and building with teams under real deadlines taught me to ask good questions, stay calm when plans change, and understand the person on the other side before deciding what to make.</p>
+          <p className={styles.lede}>I’m a Computer Science student from Manila and Cavite who enjoys the moment when a messy idea finally starts making sense.</p>
+          <p>If I don’t understand something, I keep pulling at the thread until I do. I read, ask questions, break things, and rebuild them. That curiosity keeps taking me toward full-stack development, data, privacy, and interfaces that don’t make people work harder than they need to.</p>
+          <p>It has also turned into real products: AnoSked simplifies class planning, VERA explores more private ways to trust online reviews, and DoubleTime keeps storefront and POS orders working together. Each one taught me something different about turning a problem into a system someone else can actually use.</p>
+          <p>Code isn’t the whole story. I’ve led programs for 100+ students and managed organization budgets where every peso had to be explained. Those experiences taught me to listen first, communicate clearly, and stay useful when the plan changes.</p>
         </div>
       </div>
     </section>

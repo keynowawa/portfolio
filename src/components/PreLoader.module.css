@@ -15,15 +15,15 @@
 .window {
   display: grid;
   position: relative;
-  width: min(calc(100% - 48px), 820px);
-  height: min(42svh, 350px);
-  min-height: 270px;
+  width: min(calc(100% - 48px), 700px);
+  height: min(30svh, 230px);
+  min-height: 200px;
   overflow: hidden;
   place-items: center;
   border: 1px solid rgba(255,255,255,.14);
   border-radius: 18px;
   background: #06080c;
-  box-shadow: 0 36px 100px rgba(0,0,0,.72), 0 0 60px rgba(68,99,255,.08), inset 0 1px rgba(255,255,255,.04);
+  box-shadow: 0 36px 100px rgba(0,0,0,.72), 0 0 60px rgba(41,151,255,.08), inset 0 1px rgba(255,255,255,.04);
 }
 
 .window pre {
@@ -40,27 +40,9 @@
   width: 6px;
   height: 1em;
   margin-left: 4px;
-  background: #7190ff;
+  background: var(--signal);
   vertical-align: -.16em;
   animation: blink 660ms steps(2,end) infinite;
-}
-
-.stream {
-  display: flex;
-  position: absolute;
-  inset: -100% 0 -20%;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 8px;
-  animation: rush 720ms cubic-bezier(.5,0,.95,.35) both;
-}
-
-.stream code {
-  color: #8da5ff;
-  font: 500 clamp(.52rem, 1vw, .66rem)/1.45 var(--font-mono);
-  letter-spacing: .04em;
-  text-align: center;
-  white-space: nowrap;
 }
 
 .skip {
@@ -73,14 +55,9 @@
 }
 
 @keyframes blink { 50% { opacity: 0; } }
-@keyframes rush {
-  from { opacity: .4; transform: translateY(45%); }
-  30% { opacity: 1; }
-  to { opacity: 0; transform: translateY(-30%); }
-}
 
 @media (max-width: 600px) {
-  .window { width: min(calc(100% - 28px), 820px); height: min(40svh, 330px); min-height: 250px; }
+  .window { width: min(calc(100% - 36px), 700px); height: min(28svh, 210px); min-height: 188px; }
   .window pre { width: calc(100% - 34px); text-align: left; }
 }
 

@@ -12,33 +12,38 @@
 
 .signature {
   display: flex;
-  align-items: flex-start;
-  gap: 18px;
+  align-items: center;
+  gap: 20px;
 }
 
-.mark {
-  display: grid;
+.portrait {
+  display: block;
+  position: relative;
   flex: 0 0 auto;
-  width: 46px;
-  height: 46px;
-  place-items: center;
-  background: var(--signal);
-  color: var(--ink);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 800;
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 20px;
+  background: radial-gradient(circle at 50% 25%, rgba(41,151,255,.2), transparent 62%), #0a0d12;
+  box-shadow: inset 0 1px rgba(255,255,255,.05);
 }
 
-.signature div {
+.portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 12%; transform: scale(1.28); transform-origin: 50% 24%; }
+
+.identity {
   display: grid;
-  gap: 5px;
+  gap: 4px;
 }
 
 .signature strong {
-  font-size: 1rem;
+  font-size: 1.08rem;
+  letter-spacing: -.025em;
 }
 
-.signature div span,
+.identity span { color: #bbc3cf; font-size: .72rem; }
+.identity small { color: #747f91; font-size: .64rem; }
+
 .closing {
   color: var(--paper-dim);
   font-family: var(--font-mono);
@@ -55,7 +60,7 @@
 
 .index a,
 .external a {
-  display: flex;
+  display: grid;
   align-items: center;
   min-height: 44px;
   border-bottom: 1px solid var(--line);
@@ -67,13 +72,23 @@
   text-transform: uppercase;
 }
 
-.index a span {
-  width: 34px;
-  color: var(--signal);
+.index a {
+  grid-template-columns: 34px minmax(0, 1fr);
+  column-gap: 10px;
 }
 
+.indexNumber {
+  color: var(--signal);
+  font-variant-numeric: tabular-nums;
+  text-align: left;
+}
+
+.indexLabel { min-width: 0; text-align: left; }
+
 .external a {
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 20px 1fr auto;
+  gap: 10px;
 }
 
 .index a:hover,
@@ -115,11 +130,44 @@
 
   .signature {
     grid-column: auto;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
   }
+
+  .portrait { width: 84px; height: 84px; border-radius: 24px; }
+  .identity { justify-items: center; }
+
+  .index { width: min(100%, 300px); margin-inline: auto; }
+  .index a {
+    min-height: 48px;
+    padding-inline: 14px;
+    grid-template-columns: 32px minmax(0, 1fr);
+    column-gap: 12px;
+  }
+
+  .external {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .external a {
+    min-height: 44px;
+    padding-inline: 12px;
+    grid-template-columns: 18px auto;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+
+  .external a svg:last-child { display: none; }
 
   .closing {
     grid-column: auto;
+    align-items: center;
     flex-direction: column;
     gap: 8px;
+    text-align: center;
   }
 }
