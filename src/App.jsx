@@ -11,25 +11,37 @@ import MasterFooter from './components/MasterFooter';
 import Wayfinder from './components/Wayfinder';
 import GlassNav from './components/GlassNav';
 import AllProjectsPage from './components/AllProjectsPage';
+import ProjectDetailPage from './components/ProjectDetailPage';
 
 function App() {
   const [showLoader, setShowLoader] = useState(true);
-  const [showAllProjects, setShowAllProjects] = useState(() => window.location.hash === '#all-projects');
+  const [locationKey, setLocationKey] = useState(() => `${window.location.pathname}${window.location.hash}`);
   const finishLoading = useCallback(() => setShowLoader(false), []);
 
   useEffect(() => {
     document.documentElement.dataset.theme = 'light';
 
-    const handleHashChange = () => setShowAllProjects(window.location.hash === '#all-projects');
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    const handleLocationChange = () => setLocationKey(`${window.location.pathname}${window.location.hash}`);
+    window.addEventListener('hashchange', handleLocationChange);
+    window.addEventListener('popstate', handleLocationChange);
+    return () => {
+      window.removeEventListener('hashchange', handleLocationChange);
+      window.removeEventListener('popstate', handleLocationChange);
+    };
   }, []);
 
   useEffect(() => {
-    if (showAllProjects) window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [showAllProjects]);
+    if (window.location.pathname.startsWith('/projects') || window.location.hash === '#all-projects') window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [locationKey]);
 
-  if (showAllProjects) {
+  const normalizedPath = window.location.pathname.replace(/\/+$/, '') || '/';
+  const projectMatch = normalizedPath.match(/^\/projects\/([^/]+)$/);
+
+  if (projectMatch) {
+    return <ProjectDetailPage slug={decodeURIComponent(projectMatch[1])} />;
+  }
+
+  if (normalizedPath === '/projects' || window.location.hash === '#all-projects') {
     return <AllProjectsPage />;
   }
 

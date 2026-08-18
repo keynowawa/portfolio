@@ -1,55 +1,89 @@
+import { useMemo, useState } from 'react';
 import Glyph from './Glyph';
-import { projectCollections } from '../content/portfolio';
-import { showcaseProjects } from '../content/showcaseProjects';
+import MasterFooter from './MasterFooter';
+import ProjectVisual from './ProjectVisual';
+import { allProjects, projectCategories } from '../content/allProjects';
 import styles from './AllProjectsPage.module.css';
 
 export default function AllProjectsPage() {
-  return (
-    <main className={styles.page}>
-      <header className={styles.topbar}>
-        <a className={styles.brand} href="#projects">Kyann Tagle</a>
-        <a className={styles.back} href="#projects"><span aria-hidden="true">←</span> Back to portfolio</a>
-      </header>
+  const [query, setQuery] = useState('');
+  const [category, setCategory] = useState('All');
 
-      <div className={styles.wrap}>
-        <header className={styles.hero}>
-          <span>THE BUILD FOLDER</span>
-          <h1>All projects.<br /><em>Including the weird ones.</em></h1>
-          <p>Products, client work, research, games, and the early builds that taught me what not to do twice.</p>
+  const filteredProjects = useMemo(() => {
+    const search = query.trim().toLowerCase();
+    return allProjects.filter((project) => {
+      const matchesCategory = category === 'All' || project.category === category;
+      const searchable = `${project.title} ${project.type} ${project.category} ${project.description} ${project.stack.join(' ')}`.toLowerCase();
+      return matchesCategory && (!search || searchable.includes(search));
+    });
+  }, [category, query]);
+
+  return (
+    <>
+      <main id="page-top" className={styles.page}>
+        <header className={styles.topbar}>
+          <a className={styles.brand} href="/">Kyann Tagle</a>
+          <a className={styles.back} href="/#projects"><span aria-hidden="true">←</span> Back to portfolio</a>
         </header>
 
-        <section className={styles.selected} aria-labelledby="selected-projects-title">
-          <h2 id="selected-projects-title">Selected</h2>
-          <div className={styles.selectedGrid}>
-            {showcaseProjects.map((project) => (
-              <a href={project.id === 'metro' ? '#game-shelf-title' : project.href} key={project.id} {...(project.href.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}>
-                <span>{project.type}</span><strong>{project.title}</strong><time>{project.year}</time>
-              </a>
-            ))}
-          </div>
-        </section>
+        <div className={styles.wrap}>
+          <header className={styles.hero}>
+            <span>THE BUILD FOLDER</span>
+            <h1>All projects.<br /><em>Even the strange ones.</em></h1>
+            <p>Products, client work, research, games, and the early builds that taught me what not to do twice.</p>
+          </header>
 
-        {projectCollections.map((collection, index) => (
-          <section className={styles.collection} key={collection.id} aria-labelledby={`${collection.id}-title`}>
-            <div className={styles.collectionTitle}>
-              <span>0{index + 1}</span>
-              <div><h2 id={`${collection.id}-title`}>{collection.label}</h2><p>{collection.summary}</p></div>
+          <section className={styles.browser} aria-labelledby="projects-browser-title">
+            <div className={styles.browserHeading}>
+              <div><span>Case studies</span><h2 id="projects-browser-title">Featured projects</h2></div>
+              <p>Showing {filteredProjects.length} of {allProjects.length} projects</p>
             </div>
-            <div className={styles.projectList}>
-              {collection.items.map((item) => {
-                const Wrapper = item.href ? 'a' : 'article';
-                return (
-                  <Wrapper className={styles.project} key={item.title} {...(item.href ? { href: item.href, target: '_blank', rel: 'noreferrer' } : {})}>
-                    <div><span>{item.status}</span><h3>{item.title}</h3><p>{item.description}</p></div>
-                    <ul>{item.stack.map((tool) => <li key={tool}>{tool}</li>)}</ul>
-                    {item.href && <Glyph name="arrowUpRight" size={18} />}
-                  </Wrapper>
-                );
-              })}
+
+            <div className={styles.controls}>
+              <label className={styles.search}>
+                <span className="sr-only">Search projects</span>
+                <Glyph name="searchPrompt" size={18} />
+                <input value={query} onChange={(event) => setQuery(event.target.value)} type="search" placeholder="Search by title, category, or keyword" />
+              </label>
+
+              <div className={styles.filters} aria-label="Filter by category">
+                {projectCategories.map((item) => (
+                  <button className={category === item ? styles.activeFilter : ''} type="button" onClick={() => setCategory(item)} aria-pressed={category === item} key={item}>{item}</button>
+                ))}
+              </div>
             </div>
+
+            {filteredProjects.length ? (
+              <div className={styles.grid}>
+                {filteredProjects.map((project) => (
+                  <article className={styles.projectCard} key={project.id}>
+                    <div className={styles.media}>
+                      <ProjectVisual project={project} />
+                      <div className={styles.actions}>
+                        {project.website && (
+                          <a href={project.website} {...(project.website.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})} aria-label={`Visit ${project.title} website`} title="Visit website"><Glyph name="arrowUpRight" size={19} /></a>
+                        )}
+                        <a className={styles.openProject} href={`/projects/${project.id}/`} aria-label={`Open ${project.title} case study`} title="Open project"><Glyph name="arrowRight" size={19} /></a>
+                      </div>
+                    </div>
+                    <div className={styles.meta}>
+                      <div>
+                        <span>{project.type}</span>
+                        <a href={`/projects/${project.id}/`}><h3>{project.title}</h3></a>
+                        <p>{project.description}</p>
+                      </div>
+                      <time dateTime={project.year}>{project.year}</time>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <div className={styles.empty}><strong>No project found.</strong><p>Try a broader keyword or another category.</p></div>
+            )}
           </section>
-        ))}
-      </div>
-    </main>
+        </div>
+      </main>
+      <MasterFooter />
+    </>
   );
 }

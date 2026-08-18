@@ -4,8 +4,8 @@ import styles from './GlassNav.module.css';
 const links = [
   ['#about', 'About'],
   ['#projects', 'Projects'],
-  ['#journey', 'Story'],
-  ['#credentials', 'Certs'],
+  ['#journey', 'Story', true],
+  ['#credentials', 'Certs', true],
   ['#contact', 'Contact'],
 ];
 
@@ -42,10 +42,11 @@ export default function GlassNav() {
     <header className={`${styles.shell} ${visible ? styles.visible : ''}`} aria-hidden={!visible}>
       <a className={styles.brand} href="#hero"><span>Kyann Tagle</span><i aria-hidden="true">KT</i></a>
       <nav aria-label="Primary navigation">
-        {links.map(([href, label]) => (
-          <a className={active === href.slice(1) ? styles.active : ''} href={href} key={href} aria-current={active === href.slice(1) ? 'location' : undefined}>{label}</a>
+        {links.map(([href, label, optional]) => (
+          <a className={`${active === href.slice(1) ? styles.active : ''} ${optional ? styles.optional : ''}`} href={href} key={href} aria-current={active === href.slice(1) ? 'location' : undefined}>{label}</a>
         ))}
       </nav>
+      <a className={styles.meeting} href="/book-a-meeting/"><span>Book a meeting</span><i>Meet</i></a>
     </header>
   );
 }

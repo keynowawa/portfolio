@@ -1,0 +1,14 @@
+.image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.placeholder { position: relative; width: 100%; height: 100%; overflow: hidden; padding: clamp(16px,2vw,24px); background: linear-gradient(145deg,#eef4fb,#dfe9f5); color: #1f3c5d; }
+.placeholder::before { position: absolute; right: -10%; bottom: -42%; width: 55%; aspect-ratio: 1; border-radius: 50%; background: rgba(0,113,227,.12); filter: blur(8px); content: ""; }
+.placeholder[data-category="Research + data"] { background: linear-gradient(145deg,#eef7f6,#dcebe8); color: #23564e; }
+.placeholder[data-category="Games"] { background: linear-gradient(145deg,#fff4e8,#f0e1cd); color: #6b4525; }
+.placeholder[data-category="Experiments"] { background: linear-gradient(145deg,#f3effb,#e4ddf2); color: #513f70; }
+.windowBar { display: grid; position: relative; z-index: 1; height: 38px; padding-inline: 12px; grid-template-columns: 1fr auto 1fr; align-items: center; border: 1px solid rgba(255,255,255,.84); border-radius: 13px; background: rgba(255,255,255,.58); box-shadow: 0 9px 30px rgba(33,54,80,.08), inset 0 1px #fff; backdrop-filter: blur(16px); }
+.windowBar > span { display: flex; gap: 5px; }
+.windowBar i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: .22; }
+.windowBar small { color: currentColor; font-family: var(--font-mono); font-size: .45rem; opacity: .68; }
+.placeholderBody { display: flex; position: relative; z-index: 1; height: calc(100% - 38px); padding: clamp(20px,3vw,38px); flex-direction: column; justify-content: flex-end; }
+.placeholderBody > span { font-family: var(--font-mono); font-size: .48rem; letter-spacing: .08em; opacity: .68; text-transform: uppercase; }
+.placeholderBody strong { max-width: 85%; margin-top: 9px; font-size: clamp(1.5rem,3.1vw,3rem); font-weight: 620; letter-spacing: -.055em; line-height: .95; }
+.placeholderBody small { margin-top: 12px; font-size: .57rem; opacity: .62; }

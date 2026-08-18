@@ -66,7 +66,7 @@ export default function ExperienceMap() {
       const track = timelineRef.current;
       if (track && previousTime && !pausedRef.current && document.visibilityState === 'visible') {
         const delta = Math.min(time - previousTime, 32);
-        track.scrollLeft += delta * 0.018;
+        track.scrollLeft += delta * 0.025;
         const loopPoint = track.scrollWidth / 2;
         if (track.scrollLeft >= loopPoint) track.scrollLeft -= loopPoint;
       }
@@ -148,8 +148,6 @@ export default function ExperienceMap() {
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerEnd}
         onPointerCancel={handlePointerEnd}
-        onMouseEnter={pause}
-        onMouseLeave={() => resumeAfter(500)}
         onFocusCapture={pause}
         onBlurCapture={() => resumeAfter(900)}
         onTouchEnd={() => resumeAfter(3200)}

@@ -4,7 +4,7 @@ import styles from './ProjectGrid.module.css';
 
 function ProjectArtwork({ project, compact = false }) {
   if (project.image) {
-    return <img className={styles.projectImage} src={project.image} alt={`${project.title} interface`} />;
+    return <img className={styles.projectImage} src={project.image} alt={`${project.title} interface`} loading="lazy" decoding="async" />;
   }
 
   return (
@@ -53,14 +53,13 @@ export default function ProjectGrid() {
             <span className="section-kicker"><span>02</span><span>Selected work</span></span>
             <h2 id="projects-title" className="section-title">Ideas, now working.</h2>
           </div>
-          <a className={styles.allProjects} href="#all-projects">All projects <Glyph name="arrowRight" size={16} /></a>
+          <a className={styles.allProjects} href="/projects/">All projects <Glyph name="arrowRight" size={16} /></a>
         </header>
 
         <div className={styles.grid}>
           {showcaseProjects.map((project) => {
-            const external = project.href.startsWith('http');
             return (
-              <a className={styles.projectCard} href={project.href} key={project.id} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}>
+              <a className={styles.projectCard} href={`/projects/${project.detailId}/`} key={project.id}>
                 <div className={styles.media}>
                   <ProjectArtwork project={project} />
                   <span className={styles.goIcon} aria-hidden="true"><Glyph name="arrowUpRight" size={20} /></span>

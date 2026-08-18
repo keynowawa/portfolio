@@ -1,4 +1,4 @@
-import resumeUrl from '../../information/TAGLE-CV-2025.pdf?url';
+import resumeUrl from '../../information/FINAL-TAGLE-RESUME-2026.pdf?url';
 
 export const profile = {
   displayName: 'Kyann Tagle',

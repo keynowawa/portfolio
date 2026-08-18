@@ -12,6 +12,9 @@ const index = [
 ];
 
 export default function MasterFooter() {
+  const onPortfolioHome = window.location.pathname === '/';
+  const sectionHref = (href) => onPortfolioHome ? href : `/${href}`;
+
   return (
     <footer className={styles.footer}>
       <div className={`${styles.inner} container`}>
@@ -28,7 +31,7 @@ export default function MasterFooter() {
 
         <nav className={styles.index} aria-label="Footer index">
           {index.map(([number, label, href]) => (
-            <a key={href} href={href}>
+            <a key={href} href={sectionHref(href)}>
               <span className={styles.indexNumber}>{number}</span>
               <span className={styles.indexLabel}>{label}</span>
             </a>
@@ -48,7 +51,7 @@ export default function MasterFooter() {
         <div className={styles.closing}>
           <span>© 2026 Jel Kyann J. Tagle</span>
           <span>Manila &amp; Cavite, Philippines</span>
-          <a href="#hero">Back to top ↑</a>
+          <a href={onPortfolioHome ? '#hero' : '#page-top'}>Back to top ↑</a>
         </div>
       </div>
     </footer>

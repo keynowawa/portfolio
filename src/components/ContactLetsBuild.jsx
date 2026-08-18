@@ -5,38 +5,45 @@ import styles from './ContactLetsBuild.module.css';
 export default function ContactLetsBuild() {
   return (
     <section id="contact" className={`${styles.contactSection} container section-padding`} aria-labelledby="contact-title">
-      <div className={styles.contactWindow}>
-        <div className={styles.windowBody}>
-          <div className={styles.intro}>
-            <span className="section-kicker"><span>06</span><span>Say hi</span></span>
-            <h2 id="contact-title">Got an idea?<br /><span>Tell me about it.</span></h2>
-            <p>Internship, side project, weird idea, or a problem that needs untangling. Send it over. I read everything myself.</p>
-          </div>
+      <div className={styles.availability}>
+        <span><i aria-hidden="true" /> Available for internships, freelance work, and collaborations</span>
+        <span>Philippines / working worldwide</span>
+      </div>
 
-          <div className={styles.actions}>
-            <a className={styles.resumeDownload} href={profile.resumeUrl} download="Jel-Kyann-Tagle-Resume.pdf">
-              <span className={styles.actionIcon}><Glyph name="download" size={18} /></span>
-              <span className={styles.actionCopy}><strong>Download resume</strong><small>PDF file</small></span>
-            </a>
-
-            <a className={styles.emailAction} href={`mailto:${profile.email}`}>
-              <span className={styles.actionIcon}><Glyph name="mail" size={18} /></span>
-              <span className={styles.actionCopy}><small>Start a conversation</small><strong>{profile.email}</strong></span>
-            </a>
-          </div>
+      <div className={styles.heading}>
+        <div>
+          <span className="section-kicker"><span>06</span><span>Contact</span></span>
+          <h2 id="contact-title">Let’s build<br /><span>something worth using.</span></h2>
         </div>
+        <div className={styles.intro}>
+          <p>Have a product idea, a role I might fit, or a problem that needs a fresh set of eyes? Tell me where you want to go.</p>
+          <a className={styles.resumeLink} href={profile.resumeUrl} download="FINAL-TAGLE-RESUME-2026.pdf"><Glyph name="download" size={16} /> Download resume <small>PDF</small></a>
+        </div>
+      </div>
 
-        <nav className={styles.channels} aria-label="More ways to connect">
-          <a href={profile.linkedin} target="_blank" rel="noreferrer">
-            <span className={styles.channelIcon}><Glyph name="linkedin" /></span>
-            <span><strong>LinkedIn</strong><small>Let’s connect</small></span>
-          </a>
-          <a href={profile.github} target="_blank" rel="noreferrer">
-            <span className={styles.channelIcon}><Glyph name="github" /></span>
-            <span><strong>GitHub</strong><small>@{profile.handle}</small></span>
-          </a>
-        </nav>
+      <div className={styles.contactGrid}>
+        <a className={`${styles.contactCard} ${styles.emailCard}`} href={`mailto:${profile.email}`}>
+          <span className={styles.cardNumber}>01 / Email</span>
+          <span className={styles.cardIcon}><Glyph name="mail" size={21} /></span>
+          <div><h3>Start with an email.</h3><p>{profile.email}</p></div>
+          <Glyph className={styles.arrow} name="arrowUpRight" size={18} />
+        </a>
 
+        <a className={styles.contactCard} href="/book-a-meeting/">
+          <span className={styles.cardNumber}>02 / Conversation</span>
+          <span className={styles.cardIcon}><Glyph name="calendar" size={21} /></span>
+          <div><h3>Book a focused call.</h3><p>Choose a time and let’s talk through it.</p></div>
+          <Glyph className={styles.arrow} name="arrowRight" size={18} />
+        </a>
+
+        <div className={`${styles.contactCard} ${styles.socialCard}`}>
+          <span className={styles.cardNumber}>03 / Socials</span>
+          <div className={styles.socialHeading}><h3>Stay connected.</h3><p>Code, work, and the occasional update.</p></div>
+          <nav aria-label="Social links">
+            <a href={profile.linkedin} target="_blank" rel="noreferrer"><Glyph name="linkedin" size={18} /> LinkedIn <Glyph name="arrowUpRight" size={14} /></a>
+            <a href={profile.github} target="_blank" rel="noreferrer"><Glyph name="github" size={18} /> GitHub <Glyph name="arrowUpRight" size={14} /></a>
+          </nav>
+        </div>
       </div>
     </section>
   );

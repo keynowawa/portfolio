@@ -83,7 +83,7 @@
 
 .story { max-width: 740px; }
 .story .lede { margin: 0; color: #25282e; font-size: clamp(1.12rem,1.65vw,1.48rem); letter-spacing: -.034em; line-height: 1.55; }
-.evidence { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin-top: 34px; overflow: hidden; border: 1px solid rgba(17,24,39,.08); border-radius: 20px; background: rgba(255,255,255,.74); box-shadow: 0 16px 44px rgba(31,48,73,.06), inset 0 1px rgba(255,255,255,.9); }
+.evidence { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); margin-top: 34px; overflow: hidden; border: 1px solid rgba(17,24,39,.08); border-radius: 20px; background: rgba(255,255,255,.74); box-shadow: 0 16px 44px rgba(31,48,73,.06), inset 0 1px rgba(255,255,255,.9); }
 .evidence div { min-width: 0; padding: 20px; border-right: 1px solid rgba(17,24,39,.07); }
 .evidence div:last-child { border-right: 0; }
 .evidence dt { color: #0071e3; font-size: clamp(1.42rem,2.4vw,2rem); font-weight: 640; letter-spacing: -.055em; line-height: 1; }
@@ -94,9 +94,6 @@
 @media (max-width: 900px) {
   .editorialGrid { grid-template-columns: minmax(280px, .8fr) minmax(0, 1.2fr); gap: 34px; }
   .portraitStage { min-height: 260px; }
-  .evidence { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .evidence div:nth-child(2) { border-right: 0; }
-  .evidence div:nth-child(-n+2) { border-bottom: 1px solid rgba(17,24,39,.07); }
 }
 
 @media (max-width: 720px) {
