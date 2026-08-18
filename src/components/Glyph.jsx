@@ -1,5 +1,6 @@
 const paths = {
   arrowDownRight: <><path d="M7 7 17 17" /><path d="M17 7v10H7" /></>,
+  arrowRight: <><path d="M5 12h14" /><path d="m14 7 5 5-5 5" /></>,
   arrowUpRight: <><path d="M7 17 17 7" /><path d="M7 7h10v10" /></>,
   briefcase: <><rect x="3" y="7" width="18" height="13" rx="1" /><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18" /></>,
   code: <><path d="m9 18-6-6 6-6" /><path d="m15 6 6 6-6 6" /></>,

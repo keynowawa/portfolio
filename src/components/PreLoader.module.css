@@ -5,7 +5,7 @@
   z-index: 10000;
   place-items: center;
   overflow: hidden;
-  background: #000;
+  background: #f5f5f7;
   opacity: 1;
   transition: opacity 260ms ease;
 }
@@ -20,16 +20,16 @@
   min-height: 200px;
   overflow: hidden;
   place-items: center;
-  border: 1px solid rgba(255,255,255,.14);
+  border: 1px solid rgba(17,24,39,.09);
   border-radius: 18px;
-  background: #06080c;
-  box-shadow: 0 36px 100px rgba(0,0,0,.72), 0 0 60px rgba(41,151,255,.08), inset 0 1px rgba(255,255,255,.04);
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 32px 90px rgba(31,48,73,.14), inset 0 1px rgba(255,255,255,.95);
 }
 
 .window pre {
   width: calc(100% - 72px);
   max-width: 760px;
-  color: #c7ccd7;
+  color: #444b55;
   font: 500 clamp(.61rem, 1vw, .74rem)/2 var(--font-mono);
   letter-spacing: .02em;
   white-space: pre-wrap;
@@ -48,7 +48,7 @@
 .skip {
   position: absolute;
   bottom: 28px;
-  color: #3e4657;
+  color: #969ca5;
   font-family: var(--font-sans);
   font-size: .58rem;
   letter-spacing: .04em;

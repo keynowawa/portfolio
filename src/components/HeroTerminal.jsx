@@ -108,7 +108,7 @@ export default function HeroTerminal() {
 
         <div className={styles.terminalMain}>
           <h1 id="hero-title">Kyann Tagle</h1>
-          <p className={styles.role}>Data Science, Cryptography, Full Stack Developer</p>
+          <p className={styles.role}>Full-stack developer exploring data, privacy, and cryptography.</p>
 
           <div className={styles.commentTerminal} aria-hidden="true">
             <code>{commentText}</code>

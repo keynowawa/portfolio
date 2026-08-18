@@ -181,7 +181,7 @@ export const projectCollections = [
         status: 'Playable experiment',
         description: 'Tetris reworked with deliberately difficult modes, including time pressure, limited visibility, shifting colors, and reversed controls.',
         stack: ['JavaScript', 'HTML', 'CSS'],
-        href: 'https://github.com/keynowawa/tetris',
+        href: 'https://github.com/keynowawa/tetris-but-harder',
         linkLabel: 'Source',
       },
     ],

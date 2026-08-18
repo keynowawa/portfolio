@@ -1,19 +1,19 @@
 :root {
-  --ink: #07080c;
-  --paper: #f5f7fb;
-  --paper-dim: #9ca5b8;
-  --line: rgba(255, 255, 255, 0.09);
-  --line-strong: rgba(255, 255, 255, 0.18);
-  --signal: #2997ff;
-  --signal-bright: #70baff;
-  --signal-soft: rgba(41, 151, 255, 0.15);
-  --panel: #11131a;
+  --ink: #f5f5f7;
+  --paper: #1d1d1f;
+  --paper-dim: #6e7480;
+  --line: rgba(17, 24, 39, 0.08);
+  --line-strong: rgba(17, 24, 39, 0.13);
+  --signal: #0071e3;
+  --signal-bright: #1683ef;
+  --signal-soft: rgba(0, 113, 227, 0.11);
+  --panel: #ffffff;
   --bg-color: var(--ink);
   --text-color: var(--paper);
   --muted-text: var(--paper-dim);
   --font-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 * {
@@ -73,8 +73,8 @@ button {
   z-index: 9999;
   padding: 12px 16px;
   transform: translateY(-160%);
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--signal);
+  color: #fff;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   text-decoration: none;
@@ -112,8 +112,8 @@ button {
 
 .section-kicker > span:last-child {
   padding: 3px 0 3px 14px;
-  border-left: 1px solid rgba(255,255,255,.2);
-  color: #bdc5d1;
+  border-left: 1px solid rgba(17,24,39,.16);
+  color: #707681;
   font-size: .76rem;
   font-weight: 560;
   letter-spacing: -.01em;
