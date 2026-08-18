@@ -227,3 +227,15 @@ export const allProjects = [
 export function findProject(slug) {
   return allProjects.find((project) => project.id === slug);
 }
+
+const containedScreenshots = new Set(['vera', 'anosked', 'twinup']);
+
+export const projectReelItems = allProjects.slice(0, 6).flatMap((project) => [
+  { id: `${project.id}-thumbnail`, title: project.title, image: project.thumbnail, fit: 'cover' },
+  ...(project.gallery || []).map((item, index) => ({
+    id: `${project.id}-screen-${index + 1}`,
+    title: `${project.title}: ${item.caption}`,
+    image: item.image,
+    fit: containedScreenshots.has(project.id) ? 'contain' : 'cover',
+  })),
+]);

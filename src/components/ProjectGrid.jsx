@@ -1,5 +1,6 @@
 import Glyph from './Glyph';
 import { showcaseProjects } from '../content/showcaseProjects';
+import { projectReelItems } from '../content/allProjects';
 import styles from './ProjectGrid.module.css';
 
 function ProjectArtwork({ project, compact = false }) {
@@ -28,13 +29,14 @@ function ProjectArtwork({ project, compact = false }) {
 }
 
 function ScreenshotReel() {
-  const reelItems = [...showcaseProjects, ...showcaseProjects];
+  const reelItems = [...projectReelItems, ...projectReelItems];
   return (
     <div className={styles.reel} aria-hidden="true">
       <div className={styles.reelTrack}>
-        {reelItems.map((project, index) => (
-          <div className={styles.reelFrame} key={`${project.id}-${index}`}>
-            <ProjectArtwork project={project} compact />
+        {reelItems.map((item, index) => (
+          <div className={styles.reelFrame} data-fit={item.fit} key={`${item.id}-${index}`}>
+            {item.fit === 'contain' && <img className={styles.reelBackdrop} src={item.image} alt="" loading="lazy" decoding="async" />}
+            <img className={styles.reelImage} src={item.image} alt="" loading="lazy" decoding="async" />
           </div>
         ))}
       </div>
