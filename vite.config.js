@@ -10,6 +10,7 @@ export default defineConfig({
       input: {
         main: fileURLToPath(new URL('./index.html', import.meta.url)),
         meeting: fileURLToPath(new URL('./book-a-meeting/index.html', import.meta.url)),
+        projects: fileURLToPath(new URL('./projects/index.html', import.meta.url)),
       },
     },
   },

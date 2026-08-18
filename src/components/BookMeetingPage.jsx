@@ -43,7 +43,7 @@ function loadCalEmbed() {
     config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true' },
     calLink: 'keyno/30min',
   });
-  window.Cal.ns['30min']('ui', { hideEventTypeDetails: false, layout: 'month_view' });
+  window.Cal.ns['30min']('ui', { hideEventTypeDetails: true, layout: 'month_view' });
 }
 
 export default function BookMeetingPage() {
@@ -71,10 +71,6 @@ export default function BookMeetingPage() {
         </div>
 
         <div className={styles.calendarShell}>
-          <div className={styles.calendarBar}>
-            <span><i /><i /><i /></span>
-            <small>cal.com/keyno/30min</small>
-          </div>
           <div className={styles.calendar} id="my-cal-inline-30min" />
         </div>
       </section>

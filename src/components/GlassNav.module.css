@@ -111,7 +111,6 @@
   text-decoration: none;
   transition: transform 220ms cubic-bezier(.22,1,.36,1), box-shadow 220ms ease;
 }
-.meeting::before { position: absolute; top: -12px; right: 12%; left: 12%; height: 22px; border-radius: 50%; background: rgba(255,255,255,.42); filter: blur(7px); content: ""; }
 .meeting:hover,
 .meeting:focus-visible { box-shadow: 0 13px 30px rgba(0,94,204,.31), inset 0 1px rgba(255,255,255,.58), inset 0 -1px rgba(0,40,110,.18); transform: translateY(-1px) scale(1.015); }
 .meeting i { display: none; font-style: normal; }
