@@ -99,7 +99,7 @@ export default function HeroTerminal() {
       <div className={styles.terminal}>
         <nav className={styles.terminalNav} aria-label="Portfolio navigation">
           <a href="#about">About</a>
-          <a href="#projects">Work</a>
+          <a href="#projects">Projects</a>
           <a href="#journey">Story</a>
           <a className={styles.secondaryNavItem} href="#toolkit">Stack</a>
           <a className={styles.secondaryNavItem} href="#credentials">Certs</a>

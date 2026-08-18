@@ -5,7 +5,7 @@ import styles from './MasterFooter.module.css';
 
 const index = [
   ['01', 'About', '#about'],
-  ['02', 'Work', '#projects'],
+  ['02', 'Projects', '#projects'],
   ['03', 'Experience', '#journey'],
   ['04', 'Stack', '#toolkit'],
   ['05', 'Credentials', '#credentials'],

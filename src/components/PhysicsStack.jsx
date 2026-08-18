@@ -5,15 +5,19 @@ const techLogos = {
   JavaScript: ['javascript', 'F7DF1E'],
   TypeScript: ['typescript', '3178C6'],
   React: ['react', '61DAFB'],
-  'Next.js': ['nextdotjs', 'FFFFFF'],
+  'Next.js': ['nextdotjs', '111111'],
   'HTML / CSS': ['html5', 'E34F26'],
   Vite: ['vite', '646CFF'],
   Supabase: ['supabase', '3FCF8E'],
   PostgreSQL: ['postgresql', '4169E1'],
   Python: ['python', '3776AB'],
   'C#': ['dotnet', '512BD4'],
-  Java: ['openjdk', 'FFFFFF'],
+  Java: ['openjdk', '111111'],
   'Swift / AppKit': ['swift', 'F05138'],
+  Unity: ['unity', '111111'],
+  Assembly: ['assemblyscript', '007AAC'],
+  'Power BI': ['powerbi', 'F2C811'],
+  RapidMiner: ['codepen', '788896'],
   Tailwind: ['tailwindcss', '06B6D4'],
   'Drizzle ORM': ['drizzle', 'C5F74F'],
   'Browser Extensions': ['googlechrome', '4285F4'],
@@ -23,6 +27,8 @@ const techLogos = {
   'Agile / Scrum': ['jira', '0052CC'],
   'Product Management': ['linear', '5E6AD2'],
   'Applied Privacy': ['proton', '6D4AFF'],
+  'Zero-knowledge Proofs': ['keybase', '33A0FF'],
+  'Data Science': ['jupyter', 'F37626'],
   'Cloud Deployment': ['cloudflare', 'F38020'],
 };
 
@@ -45,13 +51,12 @@ export default function PhysicsStack() {
             <span className="section-kicker"><span>04</span><span>My toolbox</span></span>
             <h2 id="toolkit-title" className="section-title">What I reach for.</h2>
           </div>
-          <p>No giant logo cloud—just what I use now, what I’ve tried, and what I want to get better at next.</p>
         </div>
 
         <div className={styles.toolkitRows}>
-          {toolkit.map((group, groupIndex) => (
+          {toolkit.map((group) => (
             <article key={group.label}>
-              <header><span>0{groupIndex + 1}</span><div><small>{group.label}</small><h3>{group.title}</h3></div></header>
+              <header><h3>{group.title}</h3></header>
               <div className={styles.ticker}>
                 <div className={styles.tickerTrack}>
                   {group.items.map((item) => <TechItem item={item} key={item} />)}

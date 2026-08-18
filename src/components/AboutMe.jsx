@@ -19,7 +19,7 @@ export default function AboutMe() {
 
           <div className={styles.profileDetails}>
             <div className={styles.profileSummary}>
-              <p>Computer Science student building for the web, data, and privacy.</p>
+              <p>Quiet at first. Curious always. Serious about finishing what I start.</p>
             </div>
 
             <div className={styles.profileMeta} aria-label="Profile details">
@@ -36,8 +36,13 @@ export default function AboutMe() {
         </article>
 
         <div className={styles.story}>
-          <p className={styles.lede}>I’m Kyann, a fourth-year Computer Science student from Manila and Cavite. I build full-stack products, small games, and privacy-focused experiments because making something real is how I understand it best. I’m happiest turning a rough idea into an interface people can use, whether that means designing the flow, wiring the data, or staying with the bug until it finally gives up.</p>
-          <p className={styles.note}>Currently exploring zero-knowledge proofs, cybersecurity, and data science.</p>
+          <p className={styles.lede}>I’m Kyann, a fourth-year Computer Science student from Manila and Cavite. I listen before I jump in, learn fastest by making things, and tend to stay with a problem until it works. I’m looking for an internship or junior role where I can take ownership, keep learning, and help a thoughtful team ship useful work.</p>
+          <dl className={styles.evidence} aria-label="Selected facts">
+            <div><dt>360</dt><dd>privacy trials designed</dd></div>
+            <div><dt>300</dt><dd>workstations audited</dd></div>
+            <div><dt>100+</dt><dd>people led in one program</dd></div>
+            <div><dt>₱27K+</dt><dd>managed across six events</dd></div>
+          </dl>
         </div>
       </div>
     </section>

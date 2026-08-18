@@ -3,7 +3,7 @@ import styles from './Wayfinder.module.css';
 
 const sections = [
   { id: 'about', label: 'About' },
-  { id: 'projects', label: 'Work' },
+  { id: 'projects', label: 'Projects' },
   { id: 'journey', label: 'Story' },
   { id: 'toolkit', label: 'Stack' },
   { id: 'credentials', label: 'Certs' },

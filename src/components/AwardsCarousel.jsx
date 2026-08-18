@@ -38,7 +38,6 @@ export default function AwardsCarousel() {
           <span className="section-kicker"><span>05</span><span>Credentials</span></span>
           <h2 id="credentials-title" className="section-title">The certificate wall.</h2>
         </div>
-        <p>Real certificates will appear here as a focused gallery—not a document archive. Move through the collection, then open LinkedIn when you need verification.</p>
       </div>
 
       <div className={styles.coverFlow} aria-label="Certificate gallery">
