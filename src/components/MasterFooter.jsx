@@ -8,7 +8,7 @@ const index = [
   ['02', 'Projects', '#projects'],
   ['03', 'Experience', '#journey'],
   ['04', 'Stack', '#toolkit'],
-  ['05', 'Credentials', '#credentials'],
+  ['05', 'Certificates', '#credentials'],
 ];
 
 export default function MasterFooter() {

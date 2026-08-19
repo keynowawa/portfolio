@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import Glyph from './Glyph';
 import MasterFooter from './MasterFooter';
 import ProjectVisual from './ProjectVisual';
-import { allProjects, projectCategories } from '../content/allProjects';
+import { allProjects, projectCategories, projectPageHref } from '../content/allProjects';
 import styles from './AllProjectsPage.module.css';
 
 export default function AllProjectsPage() {
@@ -63,13 +63,13 @@ export default function AllProjectsPage() {
                         {project.website && (
                           <a href={project.website} {...(project.website.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})} aria-label={`Visit ${project.title} website`} title="Visit website"><Glyph name="arrowUpRight" size={19} /></a>
                         )}
-                        <a className={styles.openProject} href={`/projects/${project.id}/`} aria-label={`Open ${project.title} case study`} title="Open project"><Glyph name="arrowRight" size={19} /></a>
+                        <a className={styles.openProject} href={projectPageHref(project.id)} aria-label={`View ${project.title} project`} title="View project"><Glyph name="arrowRight" size={19} /></a>
                       </div>
                     </div>
                     <div className={styles.meta}>
                       <div>
                         <span>{project.type}</span>
-                        <a href={`/projects/${project.id}/`}><h3>{project.title}</h3></a>
+                        <a href={projectPageHref(project.id)}><h3>{project.title}</h3></a>
                         <p>{project.description}</p>
                       </div>
                       <time dateTime={project.year}>{project.year}</time>

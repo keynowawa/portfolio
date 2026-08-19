@@ -1,6 +1,6 @@
 import Glyph from './Glyph';
 import { showcaseProjects } from '../content/showcaseProjects';
-import { projectReelItems } from '../content/allProjects';
+import { projectPageHref, projectReelItems } from '../content/allProjects';
 import styles from './ProjectGrid.module.css';
 
 function ProjectArtwork({ project, compact = false }) {
@@ -60,17 +60,29 @@ export default function ProjectGrid() {
 
         <div className={styles.grid}>
           {showcaseProjects.map((project) => {
+            const hasWebsite = project.href?.startsWith('http');
+            const detailHref = projectPageHref(project.detailId);
+
             return (
-              <a className={styles.projectCard} href={`/projects/${project.detailId}/`} key={project.id}>
+              <article className={styles.projectCard} key={project.id}>
                 <div className={styles.media}>
                   <ProjectArtwork project={project} />
-                  <span className={styles.goIcon} aria-hidden="true"><Glyph name="arrowUpRight" size={20} /></span>
+                  <div className={styles.projectActions}>
+                    {hasWebsite && (
+                      <a href={project.href} target="_blank" rel="noreferrer" aria-label={`Visit ${project.title} website`} title="Visit website">
+                        <Glyph name="arrowUpRight" size={19} />
+                      </a>
+                    )}
+                    <a className={styles.viewProject} href={detailHref} aria-label={`View ${project.title} project`} title="View project">
+                      <Glyph name="arrowRight" size={19} />
+                    </a>
+                  </div>
                 </div>
                 <div className={styles.meta}>
-                  <div><h3>{project.title}</h3><p>{project.description}</p></div>
+                  <div><a href={detailHref}><h3>{project.title}</h3></a><p>{project.description}</p></div>
                   <time dateTime={project.year}>{project.year}</time>
                 </div>
-              </a>
+              </article>
             );
           })}
         </div>

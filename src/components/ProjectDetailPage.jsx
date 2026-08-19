@@ -1,7 +1,7 @@
 import Glyph from './Glyph';
 import MasterFooter from './MasterFooter';
 import ProjectVisual from './ProjectVisual';
-import { allProjects, findProject } from '../content/allProjects';
+import { allProjects, findProject, projectPageHref } from '../content/allProjects';
 import styles from './ProjectDetailPage.module.css';
 
 export default function ProjectDetailPage({ slug }) {
@@ -78,7 +78,7 @@ export default function ProjectDetailPage({ slug }) {
             </div>
           </section>
 
-          <a className={styles.nextProject} href={`/projects/${nextProject.id}/`}>
+          <a className={styles.nextProject} href={projectPageHref(nextProject.id)}>
             <span>Next project</span><strong>{nextProject.title}</strong><Glyph name="arrowRight" size={24} />
           </a>
         </article>

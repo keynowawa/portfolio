@@ -27,9 +27,12 @@
 .grid { display: grid; margin-top: 48px; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(46px,6vw,76px) clamp(24px,3.2vw,46px); }
 .projectCard { min-width: 0; }
 .media { position: relative; overflow: hidden; aspect-ratio: 16/10; border-radius: 26px; background: #e9edf3; box-shadow: 0 24px 65px rgba(27,42,67,.09); transform: translateZ(0); transition: transform 420ms cubic-bezier(.22,1,.36,1),box-shadow 420ms ease; }
+.media::after { position: absolute; inset: 0; z-index: 1; background: rgba(10,18,30,.16); content: ""; opacity: 0; pointer-events: none; transition: opacity 240ms ease; }
 .projectCard:hover .media,
 .projectCard:focus-within .media { box-shadow: 0 34px 80px rgba(27,42,67,.16); transform: translateY(-5px); }
-.actions { display: flex; position: absolute; right: 18px; bottom: 18px; gap: 8px; opacity: 0; transform: translateY(10px); transition: opacity 180ms ease,transform 320ms cubic-bezier(.22,1,.36,1); }
+.projectCard:hover .media::after,
+.projectCard:focus-within .media::after { opacity: 1; }
+.actions { display: flex; position: absolute; right: 18px; bottom: 18px; z-index: 2; gap: 8px; opacity: 0; transform: translateY(10px); transition: opacity 180ms ease,transform 320ms cubic-bezier(.22,1,.36,1); }
 .projectCard:hover .actions,
 .projectCard:focus-within .actions { opacity: 1; transform: none; }
 .actions a { display: grid; width: 48px; height: 48px; place-items: center; border: 1px solid rgba(255,255,255,.8); border-radius: 50%; background: rgba(255,255,255,.88); box-shadow: 0 10px 28px rgba(17,28,46,.17),inset 0 1px #fff; backdrop-filter: blur(18px); color: #596574; text-decoration: none; transition: background 180ms ease,color 180ms ease,transform 180ms ease; }

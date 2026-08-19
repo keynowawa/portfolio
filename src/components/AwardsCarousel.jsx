@@ -35,7 +35,7 @@ export default function AwardsCarousel() {
     <section id="credentials" className={`${styles.credentialsSection} section-padding`} aria-labelledby="credentials-title">
       <div className={`${styles.header} container`}>
         <div>
-          <span className="section-kicker"><span>05</span><span>Credentials</span></span>
+          <span className="section-kicker"><span>05</span><span>Certificates</span></span>
           <h2 id="credentials-title" className="section-title">The certificate wall.</h2>
         </div>
       </div>
@@ -46,17 +46,18 @@ export default function AwardsCarousel() {
             const credential = credentials[index];
             const distance = Math.abs(offset);
             return (
-              <button
+              <a
                 className={`${styles.coverCard} ${offset === 0 ? styles.activeCard : ''}`}
                 style={{ '--offset': offset, '--distance': distance, zIndex: 10 - distance }}
-                type="button"
-                onClick={() => setActiveIndex(index)}
-                aria-label={offset === 0 ? `${credential.title}, selected` : `View ${credential.title}`}
-                aria-pressed={offset === 0}
+                href={profile.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Verify ${credential.title} on LinkedIn`}
+                aria-current={offset === 0 ? 'true' : undefined}
                 key={`${credential.issuer}-${credential.title}`}
               >
                 <CertificateVisual credential={credential} />
-              </button>
+              </a>
             );
           })}
         </div>
@@ -77,7 +78,7 @@ export default function AwardsCarousel() {
           ))}
         </div>
 
-        <a className={styles.verifyLink} href={profile.linkedin} target="_blank" rel="noreferrer">Verify credentials on LinkedIn <Glyph name="arrowUpRight" size={15} /></a>
+        <a className={styles.verifyLink} href={profile.linkedin} target="_blank" rel="noreferrer">Verify certificates on LinkedIn <Glyph name="arrowUpRight" size={15} /></a>
       </div>
     </section>
   );

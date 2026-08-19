@@ -66,7 +66,7 @@ export default function ExperienceMap() {
       const track = timelineRef.current;
       if (track && previousTime && !pausedRef.current && document.visibilityState === 'visible') {
         const delta = Math.min(time - previousTime, 32);
-        track.scrollLeft += delta * 0.025;
+        track.scrollLeft += delta * 0.044;
         const loopPoint = track.scrollWidth / 2;
         if (track.scrollLeft >= loopPoint) track.scrollLeft -= loopPoint;
       }
@@ -86,7 +86,7 @@ export default function ExperienceMap() {
     if (!track) return;
     pause();
     track.scrollBy({ left: direction * Math.min(track.clientWidth * .78, 500), behavior: 'smooth' });
-    resumeAfter(3800);
+    resumeAfter(900);
   };
 
   const moveGallery = (direction) => {
@@ -126,7 +126,7 @@ export default function ExperienceMap() {
     if (dragRef.current?.pointerId === event.pointerId && track?.hasPointerCapture(event.pointerId)) track.releasePointerCapture(event.pointerId);
     dragRef.current = null;
     setDragging(false);
-    resumeAfter(3200);
+    resumeAfter(0);
   };
 
   const loopEntries = [...buildLog, ...buildLog];
@@ -150,7 +150,7 @@ export default function ExperienceMap() {
         onPointerCancel={handlePointerEnd}
         onFocusCapture={pause}
         onBlurCapture={() => resumeAfter(900)}
-        onTouchEnd={() => resumeAfter(3200)}
+        onTouchEnd={() => resumeAfter(0)}
         aria-label="Career and leadership timeline. Scroll horizontally or use the previous and next buttons."
       >
         <ol className={styles.timelineTrack}>

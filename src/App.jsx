@@ -15,13 +15,13 @@ import ProjectDetailPage from './components/ProjectDetailPage';
 
 function App() {
   const [showLoader, setShowLoader] = useState(true);
-  const [locationKey, setLocationKey] = useState(() => `${window.location.pathname}${window.location.hash}`);
+  const [locationKey, setLocationKey] = useState(() => `${window.location.pathname}${window.location.search}${window.location.hash}`);
   const finishLoading = useCallback(() => setShowLoader(false), []);
 
   useEffect(() => {
     document.documentElement.dataset.theme = 'light';
 
-    const handleLocationChange = () => setLocationKey(`${window.location.pathname}${window.location.hash}`);
+    const handleLocationChange = () => setLocationKey(`${window.location.pathname}${window.location.search}${window.location.hash}`);
     window.addEventListener('hashchange', handleLocationChange);
     window.addEventListener('popstate', handleLocationChange);
     return () => {
@@ -36,6 +36,11 @@ function App() {
 
   const normalizedPath = window.location.pathname.replace(/\/+$/, '') || '/';
   const projectMatch = normalizedPath.match(/^\/projects\/([^/]+)$/);
+  const selectedProject = new URLSearchParams(window.location.search).get('project');
+
+  if (normalizedPath === '/projects' && selectedProject) {
+    return <ProjectDetailPage slug={selectedProject} />;
+  }
 
   if (projectMatch) {
     return <ProjectDetailPage slug={decodeURIComponent(projectMatch[1])} />;

@@ -1,4 +1,20 @@
 import resumeUrl from '../../information/FINAL-TAGLE-RESUME-2026.pdf?url';
+import businessAnalysisCapm from '../assets/certificates/business-analysis-capm.webp';
+import businessAnalysisMastery from '../assets/certificates/business-analysis-mastery.webp';
+import cybersecurityRiskManagement from '../assets/certificates/cybersecurity-risk-management.webp';
+import foundationsItProjectManagement from '../assets/certificates/foundations-it-project-management.webp';
+import foundationsProjectManagement from '../assets/certificates/foundations-project-management.webp';
+import introAgileScrum from '../assets/certificates/intro-agile-scrum.webp';
+import introDataAnalytics from '../assets/certificates/intro-data-analytics.webp';
+import itRiskAssessment from '../assets/certificates/it-risk-assessment.webp';
+import managingItProjectScope from '../assets/certificates/managing-it-project-scope.webp';
+import networkingCertificate from '../assets/certificates/networking.webp';
+import projectExecutionControl from '../assets/certificates/project-execution-control.webp';
+import projectInitiationPlanning from '../assets/certificates/project-initiation-planning.webp';
+import projectManagementBasics from '../assets/certificates/project-management-basics.webp';
+import projectManagementMethodologies from '../assets/certificates/project-management-methodologies.webp';
+import scrumMaster from '../assets/certificates/scrum-master.webp';
+import testingDebuggingDotnet from '../assets/certificates/testing-debugging-dotnet.webp';
 
 export const profile = {
   displayName: 'Kyann Tagle',
@@ -350,38 +366,40 @@ export const experienceGallery = [
 export const toolkit = [
   {
     label: 'CORE',
-    title: 'Core stack',
+    title: 'Daily drivers',
     items: ['JavaScript', 'TypeScript', 'React', 'Next.js', 'HTML / CSS', 'Vite', 'Supabase', 'PostgreSQL'],
   },
   {
     label: 'PROJECT USE',
-    title: 'Also used',
+    title: 'Also in the toolkit',
     items: ['Python', 'C#', 'Java', 'Swift / AppKit', 'Unity', 'Assembly', 'Power BI', 'RapidMiner', 'Tailwind', 'Browser Extensions'],
   },
   {
     label: 'DIRECTION',
-    title: 'Learning now',
+    title: 'Currently learning',
     items: ['Zero-knowledge Proofs', 'Cybersecurity', 'Data Science', 'Applied Privacy', 'Agile / Scrum', 'Product Management'],
   },
 ];
 
 export const credentials = [
-  { title: 'IT Specialist — Networking', issuer: 'Pearson', issued: 'May 2026', expires: 'May 2031', id: null, category: 'INFRASTRUCTURE', featured: true },
+  { title: 'IT Specialist — Networking', issuer: 'Pearson', issued: 'May 2026', expires: 'May 2031', id: null, category: 'INFRASTRUCTURE', featured: true, image: networkingCertificate },
   { title: 'IT Specialist — Databases', issuer: 'Certiport · Pearson VUE', issued: 'May 2025', id: 'mcYm-Dwzr', category: 'DATA', featured: true },
-  { title: 'Introduction to Data Analytics', issuer: 'IBM', issued: 'Jul 2026', id: 'VMEITV29KMP5', category: 'DATA', featured: true },
+  { title: 'Introduction to Data Analytics', issuer: 'IBM', issued: 'Jul 2026', id: 'VMEITV29KMP5', category: 'DATA', featured: true, image: introDataAnalytics },
   { title: 'Introduction to Cybersecurity', issuer: 'Amazon Web Services', issued: 'Mar 2025', id: '8900a614-4abf-47e4-885f-25a08263ec0d', category: 'SECURITY', featured: true },
-  { title: 'Testing and Debugging in .NET Core Applications', issuer: 'EDUCBA', issued: 'Jun 2026', id: 'PR7F04UV227W', category: 'ENGINEERING', featured: true },
-  { title: 'Foundations of Project Management', issuer: 'Google', issued: 'Jul 2026', id: 'RR4M9BBQPVVP', category: 'DELIVERY', featured: true },
-  { title: 'Project Management: The Basics for Success', issuer: 'UC Irvine', issued: 'Jun 2026', id: 'YSIQ63RDW6DY', category: 'DELIVERY' },
-  { title: 'Project Initiation and Planning', issuer: 'University of Illinois Urbana-Champaign', issued: 'Jul 2026', id: 'P4FKILKU5TEZ', category: 'DELIVERY' },
-  { title: 'Project Management Methodologies', issuer: 'Packt', issued: 'Jul 2026', id: 'NPV02Z4MZDUF', category: 'DELIVERY' },
+  { title: 'Testing and Debugging in .NET Core Applications', issuer: 'EDUCBA', issued: 'Jun 2026', id: 'PR7F04UV227W', category: 'ENGINEERING', featured: true, image: testingDebuggingDotnet },
+  { title: 'Foundations of Project Management', issuer: 'Google', issued: 'Jul 2026', id: 'RR4M9BBQPVVP', category: 'DELIVERY', featured: true, image: foundationsProjectManagement },
+  { title: 'Project Management: The Basics for Success', issuer: 'UC Irvine', issued: 'Jun 2026', id: 'YSIQ63RDW6DY', category: 'DELIVERY', image: projectManagementBasics },
+  { title: 'Project Initiation and Planning', issuer: 'University of Illinois Urbana-Champaign', issued: 'Jul 2026', id: 'P4FKILKU5TEZ', category: 'DELIVERY', image: projectInitiationPlanning },
+  { title: 'Project Management Methodologies', issuer: 'Packt', issued: 'Jul 2026', id: 'NPV02Z4MZDUF', category: 'DELIVERY', image: projectManagementMethodologies },
   { title: 'Performance Monitoring for Application Developers', issuer: 'Codio', issued: 'Jul 2026', id: 'J3TZ3FUKNFTJ', category: 'ENGINEERING' },
-  { title: 'Foundations of IT Project Management', issuer: 'Packt', issued: 'Jul 2026', id: 'CFV4A1JPNU96', category: 'DELIVERY' },
-  { title: 'Project Execution and Control', issuer: 'Johns Hopkins University', issued: 'Jul 2026', id: 'G8TRMJ2UPFKQ', category: 'DELIVERY' },
-  { title: 'Introduction to Agile Development and Scrum', issuer: 'IBM', issued: 'Jul 2026', id: '4I84329MLWYD', category: 'DELIVERY' },
-  { title: 'Scrum Master Certification: Scrum Methodologies', issuer: 'LearnQuest', issued: 'Jul 2026', id: 'CI4G0QTGKR9K', category: 'DELIVERY' },
-  { title: 'Business Analysis Mastery', issuer: 'Starweaver', issued: 'Jul 2026', id: '9WXWIWADHWPZ', category: 'DELIVERY' },
-  { title: 'Business Analysis and CAPM Exam Preparation', issuer: 'Packt', issued: 'Jul 2026', id: 'ZCN7C8BKTBCP', category: 'DELIVERY' },
-  { title: 'Cybersecurity Foundations for Risk Management', issuer: 'Kennesaw State University', issued: 'Jul 2026', id: 'TL5NX7XSSCZ5', category: 'SECURITY' },
+  { title: 'Foundations of IT Project Management', issuer: 'Packt', issued: 'Jul 2026', id: 'CFV4A1JPNU96', category: 'DELIVERY', image: foundationsItProjectManagement },
+  { title: 'Project Execution and Control', issuer: 'Johns Hopkins University', issued: 'Jul 2026', id: 'G8TRMJ2UPFKQ', category: 'DELIVERY', image: projectExecutionControl },
+  { title: 'Introduction to Agile Development and Scrum', issuer: 'IBM', issued: 'Jul 2026', id: '4I84329MLWYD', category: 'DELIVERY', image: introAgileScrum },
+  { title: 'Scrum Master Certification: Scrum Methodologies', issuer: 'LearnQuest', issued: 'Jul 2026', id: 'CI4G0QTGKR9K', category: 'DELIVERY', image: scrumMaster },
+  { title: 'Business Analysis Mastery', issuer: 'Starweaver', issued: 'Jul 2026', id: '9WXWIWADHWPZ', category: 'DELIVERY', image: businessAnalysisMastery },
+  { title: 'Business Analysis and CAPM Exam Preparation', issuer: 'Packt', issued: 'Jul 2026', id: 'ZCN7C8BKTBCP', category: 'DELIVERY', image: businessAnalysisCapm },
+  { title: 'Cybersecurity Foundations for Risk Management', issuer: 'Kennesaw State University', issued: 'Jul 2026', id: 'TL5NX7XSSCZ5', category: 'SECURITY', image: cybersecurityRiskManagement },
   { title: 'Project Management', issuer: 'Coursera', issued: null, id: '8uDTkJgzTmGg05CYM05hKw', category: 'DELIVERY' },
+  { title: 'IT Risk Assessment Practices', issuer: 'Packt', issued: 'Jul 2026', id: 'WXYV29RZ0BY8', category: 'SECURITY', image: itRiskAssessment },
+  { title: 'Managing IT Project Scope, Schedule, and Resources', issuer: 'Packt', issued: 'Jul 2026', id: 'CZZLL0Q8P5T4', category: 'DELIVERY', image: managingItProjectScope },
 ];

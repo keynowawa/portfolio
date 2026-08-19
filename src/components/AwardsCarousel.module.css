@@ -34,6 +34,7 @@
 }
 
 .coverCard {
+  display: block;
   position: absolute;
   top: 52%;
   left: 50%;
@@ -45,6 +46,7 @@
   background: #fff;
   box-shadow: 0 30px 90px rgba(27,42,67,.16);
   cursor: pointer;
+  text-decoration: none;
   opacity: calc(1 - var(--distance) * .2);
   filter: blur(calc(var(--distance) * 1.15px)) saturate(calc(1 - var(--distance) * .12));
   transform:
@@ -56,10 +58,13 @@
   transition: transform 520ms cubic-bezier(.2,.8,.2,1), opacity 420ms ease, filter 420ms ease, box-shadow 220ms ease;
   transform-style: preserve-3d;
 }
+.coverCard::after { position: absolute; inset: 0; z-index: 3; background: rgba(11,18,29,.16); content: ""; opacity: 0; pointer-events: none; transition: opacity 220ms ease; }
+.coverCard:hover::after,.coverCard:focus-visible::after { opacity: 1; }
+.coverCard:focus-visible { outline: 3px solid rgba(0,113,227,.32); outline-offset: 4px; }
 .coverCard > img,
 .coverCard > .certificatePlaceholder { display: block; width: 100%; aspect-ratio: 1.414 / 1; object-fit: contain; }
 .coverCard > img { background: white; }
-.activeCard { box-shadow: 0 42px 120px rgba(27,42,67,.19), 0 0 0 1px rgba(0,113,227,.22), 0 0 70px rgba(0,113,227,.08); cursor: default; }
+.activeCard { box-shadow: 0 42px 120px rgba(27,42,67,.19), 0 0 0 1px rgba(0,113,227,.22), 0 0 70px rgba(0,113,227,.08); }
 
 .certificatePlaceholder {
   display: flex;

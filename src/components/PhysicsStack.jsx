@@ -48,8 +48,8 @@ export default function PhysicsStack() {
       <div className="container section-padding">
         <div className={styles.header}>
           <div>
-            <span className="section-kicker"><span>04</span><span>My toolbox</span></span>
-            <h2 id="toolkit-title" className="section-title">What I reach for.</h2>
+            <span className="section-kicker"><span>04</span><span>Toolkit</span></span>
+            <h2 id="toolkit-title" className="section-title">Tools I actually use.</h2>
           </div>
         </div>
 

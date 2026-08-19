@@ -228,14 +228,37 @@ export function findProject(slug) {
   return allProjects.find((project) => project.id === slug);
 }
 
-const containedScreenshots = new Set(['vera', 'anosked', 'twinup']);
+export function projectPageHref(id) {
+  return `/projects/?project=${encodeURIComponent(id)}`;
+}
 
-export const projectReelItems = allProjects.slice(0, 6).flatMap((project) => [
-  { id: `${project.id}-thumbnail`, title: project.title, image: project.thumbnail, fit: 'cover' },
-  ...(project.gallery || []).map((item, index) => ({
-    id: `${project.id}-screen-${index + 1}`,
-    title: `${project.title}: ${item.caption}`,
-    image: item.image,
-    fit: containedScreenshots.has(project.id) ? 'contain' : 'cover',
-  })),
-]);
+const reelProjects = Object.fromEntries(allProjects.slice(0, 6).map((project) => [project.id, project]));
+const thumbnail = (id) => ({
+  id: `${id}-thumbnail`,
+  title: reelProjects[id].title,
+  image: reelProjects[id].thumbnail,
+  fit: 'cover',
+});
+const screenshot = (id, index) => ({
+  id: `${id}-screen-${index + 1}`,
+  title: `${reelProjects[id].title}: ${reelProjects[id].gallery[index].caption}`,
+  image: reelProjects[id].gallery[index].image,
+  fit: 'cover',
+});
+
+// A deliberate shuffle keeps one product from appearing twice in a row and
+// excludes the portrait app captures until the reel has a dedicated phone frame.
+export const projectReelItems = [
+  thumbnail('vera'),
+  screenshot('doubletime-pos', 0),
+  thumbnail('anosked'),
+  screenshot('jpv-motorcycles', 0),
+  thumbnail('twinup'),
+  screenshot('metro-mayhem', 0),
+  thumbnail('doubletime-pos'),
+  thumbnail('jpv-motorcycles'),
+  thumbnail('metro-mayhem'),
+  screenshot('doubletime-pos', 1),
+  screenshot('jpv-motorcycles', 1),
+  screenshot('metro-mayhem', 1),
+];

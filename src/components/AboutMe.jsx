@@ -39,7 +39,7 @@ export default function AboutMe() {
           <p className={styles.lede}>I’m Kyann, a fourth-year Computer Science student from Manila and Cavite. I listen before I jump in, learn fastest by making things, and tend to stay with a problem until it works. I’m looking for an internship or junior role where I can take ownership, keep learning, and help a thoughtful team ship useful work.</p>
           <dl className={styles.evidence} aria-label="Selected facts">
             <div><dt>900+</dt><dd>community members reached</dd></div>
-            <div><dt>15+</dt><dd>credentials earned</dd></div>
+            <div><dt>20</dt><dd>certificates earned</dd></div>
             <div><dt>12+</dt><dd>projects built</dd></div>
           </dl>
         </div>
