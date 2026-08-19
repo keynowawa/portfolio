@@ -57,6 +57,9 @@ export default function AwardsCarousel() {
                 key={`${credential.issuer}-${credential.title}`}
               >
                 <CertificateVisual credential={credential} />
+                <span className={styles.verifyOverlay}>
+                  Verify certificate <Glyph name="arrowUpRight" size={16} />
+                </span>
               </a>
             );
           })}

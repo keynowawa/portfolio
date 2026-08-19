@@ -40,7 +40,7 @@ export default function AboutMe() {
           <dl className={styles.evidence} aria-label="Selected facts">
             <div><dt>900+</dt><dd>community members reached</dd></div>
             <div><dt>20</dt><dd>certificates earned</dd></div>
-            <div><dt>12+</dt><dd>projects built</dd></div>
+            <div><dt>20</dt><dd>projects built</dd></div>
           </dl>
         </div>
       </div>

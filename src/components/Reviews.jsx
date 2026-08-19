@@ -31,7 +31,6 @@ export default function Reviews() {
           <span className={styles.eyebrow}>Reviews</span>
           <h2 id="reviews-title" className="section-title">What people say.</h2>
         </div>
-        <p>The work is real. The reviews will be too. These stay as placeholders until I have permission to publish them.</p>
       </header>
 
       <div className={styles.reviewGrid}>

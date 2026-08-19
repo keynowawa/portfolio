@@ -61,6 +61,31 @@
 .coverCard::after { position: absolute; inset: 0; z-index: 3; background: rgba(11,18,29,.16); content: ""; opacity: 0; pointer-events: none; transition: opacity 220ms ease; }
 .coverCard:hover::after,.coverCard:focus-visible::after { opacity: 1; }
 .coverCard:focus-visible { outline: 3px solid rgba(0,113,227,.32); outline-offset: 4px; }
+.verifyOverlay {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 4;
+  min-height: 46px;
+  padding: 0 18px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255,255,255,.86);
+  border-radius: 999px;
+  background: rgba(255,255,255,.96);
+  box-shadow: 0 14px 38px rgba(10,20,35,.2);
+  color: #172033;
+  font-size: .68rem;
+  font-weight: 650;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%,calc(-50% + 10px)) scale(.96);
+  transition: opacity 180ms ease, transform 300ms cubic-bezier(.22,1,.36,1);
+  white-space: nowrap;
+}
+.coverCard:hover .verifyOverlay,
+.coverCard:focus-visible .verifyOverlay { opacity: 1; transform: translate(-50%,-50%) scale(1); }
 .coverCard > img,
 .coverCard > .certificatePlaceholder { display: block; width: 100%; aspect-ratio: 1.414 / 1; object-fit: contain; }
 .coverCard > img { background: white; }

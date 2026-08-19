@@ -12,7 +12,7 @@ export default function HeroTerminal() {
   const [answer, setAnswer] = useState(null);
   const [isAnswering, setIsAnswering] = useState(false);
   const [answerLeaving, setAnswerLeaving] = useState(false);
-  const answerTimerRef = useRef(null);
+  const requestRef = useRef(null);
   const dismissTimerRef = useRef(null);
   const clearTimerRef = useRef(null);
   const questionScrollRef = useRef({ left: 0, top: 0 });
@@ -46,7 +46,7 @@ export default function HeroTerminal() {
   }, [commentIndex, commentText, deleting]);
 
   useEffect(() => () => {
-    window.clearTimeout(answerTimerRef.current);
+    requestRef.current?.abort();
     window.clearTimeout(dismissTimerRef.current);
     window.clearTimeout(clearTimerRef.current);
   }, []);
@@ -60,20 +60,43 @@ export default function HeroTerminal() {
     });
   };
 
-  const handleQuestion = (event) => {
+  const handleQuestion = async (event) => {
     event.preventDefault();
     const value = question.trim();
     if (!value || isAnswering) return;
     questionScrollRef.current = { left: window.scrollX, top: window.scrollY };
-    window.clearTimeout(answerTimerRef.current);
+    requestRef.current?.abort();
     window.clearTimeout(dismissTimerRef.current);
     window.clearTimeout(clearTimerRef.current);
     setAnswer(null);
     setAnswerLeaving(false);
     setIsAnswering(true);
     restoreQuestionScroll();
-    answerTimerRef.current = window.setTimeout(() => {
-      setAnswer(findPersonalAnswer(value));
+
+    const fallbackAnswer = findPersonalAnswer(value);
+    const controller = new AbortController();
+    requestRef.current = controller;
+
+    try {
+      const [aiResponse] = await Promise.all([
+        fetch('/api/ask', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question: value }),
+          signal: controller.signal,
+        }),
+        new Promise((resolve) => window.setTimeout(resolve, 420)),
+      ]);
+
+      if (!aiResponse.ok) throw new Error('AI unavailable');
+      const payload = await aiResponse.json();
+      if (!payload.answer) throw new Error('Empty AI answer');
+      setAnswer({ ...fallbackAnswer, text: payload.answer });
+    } catch (error) {
+      if (error.name === 'AbortError') return;
+      setAnswer(fallbackAnswer);
+    } finally {
+      if (requestRef.current === controller) requestRef.current = null;
       setIsAnswering(false);
       restoreQuestionScroll();
       dismissTimerRef.current = window.setTimeout(() => setAnswerLeaving(true), 6500);
@@ -83,7 +106,7 @@ export default function HeroTerminal() {
         setQuestion((current) => current.trim() === value ? '' : current);
         restoreQuestionScroll();
       }, 7100);
-    }, 520 + (value.length % 5) * 70);
+    }
   };
 
   const handleQuestionChange = (event) => {

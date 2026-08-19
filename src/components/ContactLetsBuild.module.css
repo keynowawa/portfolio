@@ -28,9 +28,9 @@
 .routeList small { color: #9299a3; font-family: var(--font-mono); font-size: .48rem; letter-spacing: .04em; text-transform: uppercase; }
 .routeList strong { overflow: hidden; color: #30353c; font-size: .72rem; font-weight: 590; text-overflow: ellipsis; white-space: nowrap; }
 .routeList > a:hover strong { color: #006edb; }
-.socialRow { display: flex; min-height: 60px; padding: 8px 12px 8px 18px; align-items: center; justify-content: space-between; gap: 20px; }
-.socialRow > span { color: #9299a3; font-family: var(--font-mono); font-size: .5rem; letter-spacing: .06em; text-transform: uppercase; }
-.socialRow nav { display: flex; gap: 7px; }
+.socialRow { display: flex; min-height: 60px; padding: 8px 0 0; align-items: center; justify-content: flex-end; }
+.socialRow nav { display: flex; width: 100%; gap: 7px; }
+.socialRow nav a { flex: 1; justify-content: center; }
 .socialRow nav a { display: inline-flex; min-height: 42px; padding: 0 12px; align-items: center; gap: 7px; border: 1px solid rgba(17,24,39,.075); border-radius: 999px; background: rgba(255,255,255,.76); color: #545c67; font-size: .58rem; font-weight: 570; text-decoration: none; transition: background 180ms ease,color 180ms ease,transform 200ms ease; }
 .socialRow nav a:hover { background: #edf5ff; color: #006edb; transform: translateY(-2px); }
 
@@ -53,7 +53,7 @@
   .routeList { border-radius: 21px; }
   .routeList > a { min-height: 84px; padding-inline: 15px; grid-template-columns: 42px minmax(0,1fr) 18px; gap: 11px; }
   .routeIcon { width: 42px; height: 42px; border-radius: 14px; }
-  .socialRow { padding-inline: 7px; align-items: flex-start; flex-direction: column; gap: 10px; }
+  .socialRow { padding: 0; }
   .socialRow nav { width: 100%; }
   .socialRow nav a { flex: 1; justify-content: center; }
 }

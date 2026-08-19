@@ -126,13 +126,14 @@
 }
 
 @media (max-width: 430px) {
-  .shell { width: calc(100% - 16px); padding-left: 10px; }
+  .shell { display: grid; width: calc(100% - 20px); padding: 5px 6px; grid-template-columns: 38px minmax(0,1fr) 44px; gap: 4px; }
+  .brand { width: 38px; margin: 0; justify-content: center; }
   .brand span { display: none; }
   .brand i { display: inline; }
-  .shell nav { flex: 1; justify-content: space-between; }
-  .shell nav a { min-width: 0; padding-inline: 8px; font-size: .54rem; }
+  .shell nav { display: grid; width: 100%; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 2px; }
+  .shell nav a { min-width: 0; padding-inline: 3px; font-size: .54rem; }
   .shell nav .optional { display: none; }
-  .meeting { margin-left: 4px; padding-inline: 13px; font-size: .56rem; }
+  .meeting { width: 44px; margin: 0; padding: 0; font-size: .56rem; }
 }
 
 @media (max-width: 350px) {

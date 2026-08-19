@@ -19,10 +19,10 @@ export default function ContactLetsBuild() {
           </header>
 
           <div className={styles.actionPanel}>
-            <a className={styles.resumeFeature} href={profile.resumeUrl} download="FINAL-TAGLE-RESUME-2026.pdf">
+            <a className={styles.resumeFeature} href={profile.resumeUrl} target="_blank" rel="noreferrer">
               <span className={styles.resumeIcon}><Glyph name="resume" size={22} /></span>
-              <span className={styles.resumeCopy}><small>Resume / PDF</small><strong>Download my resume</strong><em>The quickest overview of my work and experience.</em></span>
-              <Glyph className={styles.resumeArrow} name="download" size={20} />
+              <span className={styles.resumeCopy}><small>Resume / PDF</small><strong>Open my resume</strong><em>View, print, or download it from your browser.</em></span>
+              <Glyph className={styles.resumeArrow} name="arrowUpRight" size={20} />
             </a>
 
             <div className={styles.routeList}>
@@ -39,7 +39,6 @@ export default function ContactLetsBuild() {
             </div>
 
             <div className={styles.socialRow}>
-              <span>Elsewhere</span>
               <nav aria-label="Social links">
                 <a href={profile.linkedin} target="_blank" rel="noreferrer"><Glyph name="linkedin" size={17} /> LinkedIn</a>
                 <a href={profile.github} target="_blank" rel="noreferrer"><Glyph name="github" size={17} /> GitHub</a>

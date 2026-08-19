@@ -1,16 +1,19 @@
 import { showcaseProjects } from './showcaseProjects';
-import veraOne from '../assets/project-gallery/vera-1.webp';
-import veraTwo from '../assets/project-gallery/vera-2.webp';
-import doubleTimeOne from '../assets/project-gallery/doubletime-1.webp';
-import doubleTimeTwo from '../assets/project-gallery/doubletime-2.webp';
-import anoSkedOne from '../assets/project-gallery/anosked-1.webp';
-import anoSkedTwo from '../assets/project-gallery/anosked-2.webp';
-import twinUpOne from '../assets/project-gallery/twinup-1.webp';
-import twinUpTwo from '../assets/project-gallery/twinup-2.webp';
-import jpvOne from '../assets/project-gallery/jpv-1.webp';
-import jpvTwo from '../assets/project-gallery/jpv-2.webp';
-import metroOne from '../assets/project-gallery/metro-1.webp';
-import metroTwo from '../assets/project-gallery/metro-2.webp';
+
+const galleryModules = import.meta.glob('../assets/project-gallery/*/*.webp', {
+  eager: true,
+  import: 'default',
+});
+
+function projectGallery(folder, title) {
+  return Object.entries(galleryModules)
+    .filter(([path]) => path.includes(`/project-gallery/${folder}/`))
+    .sort(([firstPath], [secondPath]) => firstPath.localeCompare(secondPath, undefined, { numeric: true }))
+    .map(([, image], index) => ({
+      image,
+      caption: `${title} interface ${String(index + 1).padStart(2, '0')}`,
+    }));
+}
 
 const featured = Object.fromEntries(showcaseProjects.map((project) => [project.id, project]));
 
@@ -28,7 +31,7 @@ export const allProjects = [
     website: featured.vera.href,
     source: 'https://github.com/keynowawa/vera-landing-page',
     thumbnail: featured.vera.image,
-    gallery: [{ image: veraOne, caption: 'VERA Vault interface' }, { image: veraTwo, caption: 'Credential and verification workflow' }],
+    gallery: projectGallery('vera', 'VERA'),
   },
   {
     id: 'doubletime-pos', title: 'DoubleTime POS', year: '2026', category: 'Products + web', type: 'Business system',
@@ -41,7 +44,7 @@ export const allProjects = [
     website: featured.doubletime.href,
     source: 'https://github.com/keynowawa/doubletime',
     thumbnail: featured.doubletime.image,
-    gallery: [{ image: doubleTimeOne, caption: 'POS ordering workspace' }, { image: doubleTimeTwo, caption: 'Operations and reporting view' }],
+    gallery: projectGallery('doubletime', 'DoubleTime POS'),
   },
   {
     id: 'anosked', title: 'AnoSked', year: '2026', category: 'Products + web', type: 'Student productivity',
@@ -54,7 +57,7 @@ export const allProjects = [
     website: featured.anosked.href,
     source: 'https://github.com/keynowawa/AnoSked',
     thumbnail: featured.anosked.image,
-    gallery: [{ image: anoSkedOne, caption: 'Daily schedule view' }, { image: anoSkedTwo, caption: 'Classes and task planning' }],
+    gallery: projectGallery('anosked', 'AnoSked'),
   },
   {
     id: 'twinup', title: 'TwinUp', year: '2026', category: 'Games', type: 'Mobile puzzle game',
@@ -66,7 +69,7 @@ export const allProjects = [
     stack: ['JavaScript', 'HTML', 'CSS', 'PWA'],
     website: featured.twinup.href,
     thumbnail: featured.twinup.image,
-    gallery: [{ image: twinUpOne, caption: 'TwinUp start screen' }, { image: twinUpTwo, caption: 'Merge board and scoring' }],
+    gallery: projectGallery('twinup', 'TwinUp'),
   },
   {
     id: 'jpv-motorcycles', title: 'JPV Motorcycles', year: '2025', category: 'Products + web', type: 'Client platform',
@@ -78,7 +81,7 @@ export const allProjects = [
     stack: ['HTML', 'CSS', 'JavaScript', 'Client delivery'],
     website: featured.jpv.href,
     thumbnail: featured.jpv.image,
-    gallery: [{ image: jpvOne, caption: 'Motorcycle discovery experience' }, { image: jpvTwo, caption: 'Rental application workflow' }],
+    gallery: projectGallery('jpv', 'JPV Motorcycles'),
   },
   {
     id: 'metro-mayhem', title: 'Metro Mayhem', year: '2025', category: 'Games', type: 'Unity rage-platformer',
@@ -89,7 +92,7 @@ export const allProjects = [
     outcome: 'A playable Unity prototype that uses rage-game mechanics as social commentary.',
     stack: ['Unity', 'C#', 'Game design', 'Narrative systems'],
     thumbnail: featured.metro.image,
-    gallery: [{ image: metroOne, caption: 'Metro Mayhem environment' }, { image: metroTwo, caption: 'Platforming and obstacle design' }],
+    gallery: projectGallery('metro', 'Metro Mayhem'),
   },
   {
     id: 'philsys-private-credentials', title: 'Privacy-Preserving PhilSys Credentials', year: '2026', category: 'Research + data', type: 'Applied cryptography research',
@@ -233,12 +236,6 @@ export function projectPageHref(id) {
 }
 
 const reelProjects = Object.fromEntries(allProjects.slice(0, 6).map((project) => [project.id, project]));
-const thumbnail = (id) => ({
-  id: `${id}-thumbnail`,
-  title: reelProjects[id].title,
-  image: reelProjects[id].thumbnail,
-  fit: 'cover',
-});
 const screenshot = (id, index) => ({
   id: `${id}-screen-${index + 1}`,
   title: `${reelProjects[id].title}: ${reelProjects[id].gallery[index].caption}`,
@@ -246,19 +243,17 @@ const screenshot = (id, index) => ({
   fit: 'cover',
 });
 
-// A deliberate shuffle keeps one product from appearing twice in a row and
-// excludes the portrait app captures until the reel has a dedicated phone frame.
+// The reel uses product screens only. Landscape views are deliberately shuffled
+// so adjacent frames never repeat the same project.
 export const projectReelItems = [
-  thumbnail('vera'),
+  screenshot('vera', 9),
   screenshot('doubletime-pos', 0),
-  thumbnail('anosked'),
   screenshot('jpv-motorcycles', 0),
-  thumbnail('twinup'),
   screenshot('metro-mayhem', 0),
-  thumbnail('doubletime-pos'),
-  thumbnail('jpv-motorcycles'),
-  thumbnail('metro-mayhem'),
-  screenshot('doubletime-pos', 1),
-  screenshot('jpv-motorcycles', 1),
-  screenshot('metro-mayhem', 1),
+  screenshot('doubletime-pos', 3),
+  screenshot('jpv-motorcycles', 4),
+  screenshot('metro-mayhem', 2),
+  screenshot('doubletime-pos', 7),
+  screenshot('jpv-motorcycles', 8),
+  screenshot('metro-mayhem', 4),
 ];

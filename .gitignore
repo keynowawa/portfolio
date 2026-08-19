@@ -28,3 +28,7 @@ src/components/*.module 2.css
 *.njsproj
 *.sln
 *.sw?
+~$*
+
+# Editable resume source files stay local; the published PDF is tracked.
+information/*.docx

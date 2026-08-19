@@ -1,7 +1,6 @@
 .reviewsSection { border-bottom: 1px solid var(--line); }
-.header { display: flex; align-items: end; justify-content: space-between; gap: 48px; }
+.header { display: block; }
 .eyebrow { color: #0071e3; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
-.header > p { max-width: 430px; padding-bottom: 5px; color: #767d87; font-size: .73rem; line-height: 1.65; }
 .reviewGrid { display: grid; margin-top: clamp(40px,5vw,64px); grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
 .reviewCard { display: grid; position: relative; min-height: 330px; padding: 25px; overflow: hidden; grid-template-rows: auto 1fr auto; border: 1px solid rgba(17,24,39,.08); border-radius: 26px; background: rgba(255,255,255,.72); box-shadow: 0 20px 54px rgba(27,43,67,.075),inset 0 1px #fff; transition: background 320ms ease,color 280ms ease,transform 380ms cubic-bezier(.22,1,.36,1),box-shadow 280ms ease; }
 .reviewCard:hover,.reviewCard:focus-within { background: #182230; box-shadow: 0 30px 76px rgba(19,31,48,.2); color: #fff; transform: translateY(-6px); }
@@ -21,7 +20,6 @@
 .reviewCard:hover .profileLink,.reviewCard:focus-within .profileLink { opacity: 1; transform: none; }
 
 @media (max-width: 880px) {
-  .header { align-items: start; flex-direction: column; gap: 20px; }
   .reviewGrid { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .reviewCard:last-child { grid-column: 1/-1; min-height: 280px; }
 }

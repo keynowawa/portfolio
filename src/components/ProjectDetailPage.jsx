@@ -59,9 +59,19 @@ export default function ProjectDetailPage({ slug }) {
           </section>
 
           <section className={styles.stack} aria-labelledby="project-stack-title">
-            <span>Under the hood</span>
-            <h2 id="project-stack-title">Built with</h2>
-            <ul>{project.stack.map((tool) => <li key={tool}>{tool}</li>)}</ul>
+            <div className={styles.stackIntro}>
+              <span>Under the hood</span>
+              <h2 id="project-stack-title">What makes it run.</h2>
+              <p>{project.stack.length} deliberate choices, each with a job to do.</p>
+            </div>
+            <ol className={styles.stackList}>
+              {project.stack.map((tool, index) => (
+                <li key={tool}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <strong>{tool}</strong>
+                </li>
+              ))}
+            </ol>
           </section>
 
           <section className={styles.gallery} aria-labelledby="project-gallery-title">
