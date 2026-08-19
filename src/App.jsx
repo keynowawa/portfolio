@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from 'react';
-import PreLoader from './components/PreLoader';
+import { useEffect, useState } from 'react';
 import HeroTerminal from './components/HeroTerminal';
 import AboutMe from './components/AboutMe';
 import ProjectGrid from './components/ProjectGrid';
 import ExperienceMap from './components/ExperienceMap';
+import Reviews from './components/Reviews';
 import PhysicsStack from './components/PhysicsStack';
 import AwardsCarousel from './components/AwardsCarousel';
 import ContactLetsBuild from './components/ContactLetsBuild';
@@ -14,12 +14,17 @@ import AllProjectsPage from './components/AllProjectsPage';
 import ProjectDetailPage from './components/ProjectDetailPage';
 
 function App() {
-  const [showLoader, setShowLoader] = useState(true);
   const [locationKey, setLocationKey] = useState(() => `${window.location.pathname}${window.location.search}${window.location.hash}`);
-  const finishLoading = useCallback(() => setShowLoader(false), []);
 
   useEffect(() => {
     document.documentElement.dataset.theme = 'light';
+
+    const initialSection = window.location.hash.slice(1);
+    if (initialSection && initialSection !== 'all-projects') {
+      window.requestAnimationFrame(() => {
+        document.getElementById(initialSection)?.scrollIntoView({ block: 'start', behavior: 'auto' });
+      });
+    }
 
     const handleLocationChange = () => setLocationKey(`${window.location.pathname}${window.location.search}${window.location.hash}`);
     window.addEventListener('hashchange', handleLocationChange);
@@ -52,7 +57,6 @@ function App() {
 
   return (
     <>
-      {showLoader && <PreLoader onComplete={finishLoading} />}
       <a className="skip-link" href="#main-content">Skip to content</a>
       <GlassNav />
       <Wayfinder />
@@ -61,6 +65,7 @@ function App() {
         <AboutMe />
         <ProjectGrid />
         <ExperienceMap />
+        <Reviews />
         <PhysicsStack />
         <AwardsCarousel />
         <ContactLetsBuild />

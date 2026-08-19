@@ -1,14 +1,14 @@
-.credentialsSection { overflow: hidden; border-bottom: 1px solid var(--line); }
+.credentialsSection { padding-block: clamp(70px,7vw,96px); overflow: hidden; border-bottom: 1px solid var(--line); }
 .header { display: block; }
 
-.coverFlow { position: relative; margin-top: 52px; }
+.coverFlow { position: relative; margin-top: 26px; }
 .stage {
   position: relative;
-  height: clamp(440px, 48vw, 590px);
+  height: clamp(310px, 34vw, 410px);
   min-height: 0;
   overflow: hidden;
   perspective: 1500px;
-  perspective-origin: 50% 46%;
+  perspective-origin: 50% 50%;
 }
 .stage::before {
   position: absolute;
@@ -26,7 +26,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  height: 120px;
+  height: 58px;
   background: linear-gradient(transparent, #f5f5f7);
   content: "";
   pointer-events: none;
@@ -36,9 +36,9 @@
 .coverCard {
   display: block;
   position: absolute;
-  top: 52%;
+  top: 50%;
   left: 50%;
-  width: min(50vw, 620px);
+  width: min(43vw, 530px);
   padding: 0;
   overflow: hidden;
   border: 1px solid rgba(17,24,39,.1);
@@ -84,31 +84,32 @@
 .certificatePlaceholder strong { position: relative; z-index: 2; max-width: 70%; margin-top: 17px; font-size: clamp(1rem,2.2vw,2.05rem); font-weight: 590; letter-spacing: -.04em; line-height: 1.12; }
 .certificatePlaceholder small { position: relative; z-index: 2; margin-top: 11px; color: #666c77; font-size: .68rem; }
 
-.galleryMeta { display: grid; position: relative; z-index: 30; grid-template-columns: 46px minmax(0,1fr) 46px; gap: 18px; align-items: center; }
+.galleryMeta { display: grid; position: relative; z-index: 30; width: min(calc(100% - 48px),760px); margin-top: -2px; grid-template-columns: 46px minmax(0,1fr) 46px; gap: 18px; align-items: center; }
 .galleryMeta > button { display: grid; width: 46px; height: 46px; place-items: center; border: 1px solid var(--line-strong); border-radius: 50%; background: #fff; color: #59616d; font-size: 1rem; cursor: pointer; box-shadow: 0 8px 24px rgba(27,42,67,.08); }
 .galleryMeta > button:hover { border-color: rgba(41,151,255,.55); color: var(--signal-bright); }
 .activeCopy { min-width: 0; text-align: center; }
 .activeCopy span { color: var(--signal); font-family: var(--font-mono); font-size: .5rem; letter-spacing: .08em; }
-.activeCopy h3 { margin-top: 9px; font-size: clamp(1.25rem,2.4vw,2rem); font-weight: 590; letter-spacing: -.04em; }
+.activeCopy h3 { margin-top: 7px; font-size: clamp(1.2rem,2vw,1.72rem); font-weight: 590; letter-spacing: -.04em; line-height: 1.1; }
 .activeCopy p { margin-top: 7px; color: var(--paper-dim); font-size: .68rem; }
 
-.progress { display: flex; justify-content: center; gap: 2px; margin-top: 14px; }
+.progress { display: flex; justify-content: center; gap: 2px; margin-top: 8px; }
 .progress button { display: grid; width: 12px; height: 20px; padding: 0; place-items: center; border: 0; background: transparent; cursor: pointer; }
 .progress button::after { width: 8px; height: 2px; border-radius: 99px; background: #cbd0d7; content: ""; transition: width 180ms ease, background 180ms ease; }
 .progress .activeDot::after { width: 12px; background: var(--signal); }
-.verifyLink { display: flex; width: max-content; margin: 25px auto 0; align-items: center; gap: 7px; color: #8d97aa; font-size: .62rem; text-decoration: none; }
+.verifyLink { display: flex; width: max-content; margin: 13px auto 0; align-items: center; gap: 7px; color: #8d97aa; font-size: .62rem; text-decoration: none; }
 .verifyLink:hover { color: var(--signal-bright); }
 
 @media (max-width: 760px) {
-  .coverFlow { margin-top: 34px; }
-  .stage { height: 340px; }
-  .coverCard { top: 51%; width: min(80vw, 560px); border-radius: 14px; transform: translate(-50%,-50%) translateX(calc(var(--offset) * 68%)) translateZ(calc(var(--distance) * -80px)) rotateY(calc(var(--offset) * -7deg)) scale(calc(1 - var(--distance) * .15)); }
+  .credentialsSection { padding-block: 64px; }
+  .coverFlow { margin-top: 22px; }
+  .stage { height: 255px; }
+  .coverCard { top: 50%; width: min(78vw, 460px); border-radius: 14px; transform: translate(-50%,-50%) translateX(calc(var(--offset) * 68%)) translateZ(calc(var(--distance) * -80px)) rotateY(calc(var(--offset) * -7deg)) scale(calc(1 - var(--distance) * .15)); }
   .certificatePlaceholder::before { inset: 10px; }
   .certificatePlaceholder::after { inset: 15px; }
   .seal { width: 42px; height: 42px; margin-bottom: 10px; font-size: .5rem; }
   .certificatePlaceholder strong { margin-top: 10px; font-size: clamp(.8rem,3.8vw,1.25rem); }
   .certificatePlaceholder small { margin-top: 7px; font-size: .48rem; }
-  .galleryMeta { grid-template-columns: 42px minmax(0,1fr) 42px; gap: 8px; }
+  .galleryMeta { width: calc(100% - 24px); grid-template-columns: 42px minmax(0,1fr) 42px; gap: 8px; }
   .galleryMeta > button { width: 42px; height: 42px; }
   .progress { padding-inline: 0; }
   .activeCopy h3 { font-size: 1.18rem; line-height: 1.15; }

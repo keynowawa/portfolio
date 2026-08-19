@@ -26,7 +26,10 @@ export default function ProjectDetailPage({ slug }) {
       <main id="page-top" className={styles.page}>
         <header className={styles.topbar}>
           <a className={styles.brand} href="/">Kyann Tagle</a>
-          <a className={styles.back} href="/projects/"><span aria-hidden="true">←</span> All projects</a>
+          <div className={styles.topActions}>
+            <a className={styles.meeting} href="/book-a-meeting/">Meet</a>
+            <a className={styles.back} href="/projects/"><span aria-hidden="true">←</span> All projects</a>
+          </div>
         </header>
 
         <article className={styles.caseStudy}>
@@ -63,7 +66,7 @@ export default function ProjectDetailPage({ slug }) {
 
           <section className={styles.gallery} aria-labelledby="project-gallery-title">
             <header><div><span>Product gallery</span><h2 id="project-gallery-title">A closer look.</h2></div><p>{gallery.length ? `${gallery.length} project views` : 'Images will be added here as the project archive is prepared.'}</p></header>
-            <div className={styles.galleryGrid}>
+            <div className={styles.galleryGrid} data-count={gallery.length || 2}>
               {gallery.length ? gallery.map((item, index) => (
                 <figure key={item.image}>
                   <img src={item.image} alt={`${project.title}: ${item.caption}`} loading="lazy" decoding="async" />

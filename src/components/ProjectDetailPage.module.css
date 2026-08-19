@@ -1,6 +1,8 @@
 .page { min-height: 100svh; background: #f5f5f7; color: #1d1d1f; }
 .topbar { display: flex; position: sticky; top: 12px; z-index: 30; width: min(calc(100% - 32px),1220px); min-height: 58px; margin-inline: auto; padding: 7px 8px 7px 20px; align-items: center; justify-content: space-between; border: 1px solid rgba(255,255,255,.9); border-radius: 999px; background: rgba(250,251,253,.76); box-shadow: 0 14px 44px rgba(27,43,68,.09),inset 0 1px #fff; backdrop-filter: blur(28px) saturate(175%); }
 .brand,.back { color: #1d1d1f; font-size: .7rem; font-weight: 620; text-decoration: none; }
+.topActions { display: flex; align-items: center; gap: 6px; }
+.meeting { display: inline-flex; min-height: 44px; padding-inline: 15px; align-items: center; border-radius: 999px; background: #0071e3; box-shadow: 0 9px 23px rgba(0,113,227,.22),inset 0 1px rgba(255,255,255,.34); color: #fff; font-size: .62rem; font-weight: 620; text-decoration: none; }
 .back { display: inline-flex; min-height: 44px; padding-inline: 15px; align-items: center; gap: 8px; border: 1px solid rgba(17,24,39,.07); border-radius: 999px; background: rgba(255,255,255,.72); color: #66707d; }
 .back:hover { color: #006edb; }
 .caseStudy { width: min(calc(100% - clamp(40px,7vw,104px)),1180px); margin-inline: auto; padding: clamp(76px,9vw,130px) 0 120px; }
@@ -37,10 +39,11 @@
 .gallery > header { display: flex; align-items: end; justify-content: space-between; gap: 30px; }
 .gallery h2 { margin-top: 11px; font-size: clamp(2.7rem,5.5vw,5.4rem); letter-spacing: -.07em; line-height: .94; }
 .gallery header p { max-width: 390px; color: #7d848e; font-size: .68rem; line-height: 1.55; text-align: right; }
-.galleryGrid { display: grid; margin-top: 46px; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px; }
+.galleryGrid { display: grid; margin-top: 46px; grid-template-columns: repeat(2,minmax(0,1fr)); align-items: start; gap: 28px; }
+.galleryGrid[data-count="1"] { grid-template-columns: 1fr; }
 .galleryGrid figure { min-width: 0; }
-.galleryGrid figure > img,
-.galleryPlaceholder > div { display: block; width: 100%; aspect-ratio: 16/10; overflow: hidden; border-radius: 24px; background: #e7ebf1; box-shadow: 0 22px 60px rgba(27,42,67,.09); object-fit: cover; }
+.galleryGrid figure > img { display: block; width: 100%; height: auto; overflow: hidden; border-radius: 24px; background: #e7ebf1; box-shadow: 0 22px 60px rgba(27,42,67,.09); object-fit: contain; }
+.galleryPlaceholder > div { display: block; width: 100%; aspect-ratio: 16/10; overflow: hidden; border-radius: 24px; background: #e7ebf1; box-shadow: 0 22px 60px rgba(27,42,67,.09); }
 .galleryGrid figcaption { display: flex; margin-top: 14px; align-items: center; gap: 10px; color: #747b85; font-size: .62rem; }
 .galleryGrid figcaption span { color: #0071e3; font-family: var(--font-mono); font-size: .51rem; }
 .nextProject { display: grid; position: relative; min-height: 210px; margin-top: clamp(100px,12vw,160px); padding: 38px 72px 38px 38px; grid-template-rows: auto 1fr; border-block: 1px solid rgba(17,24,39,.09); color: inherit; text-decoration: none; transition: color 180ms ease,padding 260ms cubic-bezier(.22,1,.36,1); }
@@ -62,6 +65,8 @@
 }
 @media (max-width: 480px) {
   .topbar { width: calc(100% - 18px); padding-left: 14px; }
+  .topActions { gap: 4px; }
+  .meeting,.back { min-height: 40px; padding-inline: 10px; font-size: .56rem; }
   .caseStudy { width: calc(100% - 30px); }
   .hero h1 { font-size: clamp(3.8rem,18vw,5.5rem); }
   .heroVisual { border-radius: 22px; }

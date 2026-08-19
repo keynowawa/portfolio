@@ -23,7 +23,10 @@ export default function AllProjectsPage() {
       <main id="page-top" className={styles.page}>
         <header className={styles.topbar}>
           <a className={styles.brand} href="/">Kyann Tagle</a>
-          <a className={styles.back} href="/#projects"><span aria-hidden="true">←</span> Back to portfolio</a>
+          <div className={styles.topActions}>
+            <a className={styles.meeting} href="/book-a-meeting/">Meet</a>
+            <a className={styles.back} href="/#projects"><span aria-hidden="true">←</span> Portfolio</a>
+          </div>
         </header>
 
         <div className={styles.wrap}>

@@ -25,7 +25,7 @@ export default function MasterFooter() {
           <div className={styles.identity}>
             <strong>{profile.fullName}</strong>
             <span>Full-stack developer</span>
-            <small>Manila &amp; Cavite, Philippines</small>
+            <small>Philippines</small>
           </div>
         </div>
 
@@ -50,7 +50,7 @@ export default function MasterFooter() {
 
         <div className={styles.closing}>
           <span>© 2026 Jel Kyann J. Tagle</span>
-          <span>Manila &amp; Cavite, Philippines</span>
+          <span>Philippines</span>
           <a href={onPortfolioHome ? '#hero' : '#page-top'}>Back to top ↑</a>
         </div>
       </div>

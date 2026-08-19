@@ -43,7 +43,7 @@ function loadCalEmbed() {
     config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true' },
     calLink: 'keyno/30min',
   });
-  window.Cal.ns['30min']('ui', { hideEventTypeDetails: true, layout: 'month_view' });
+  window.Cal.ns['30min']('ui', { hideEventTypeDetails: false, layout: 'month_view' });
 }
 
 export default function BookMeetingPage() {
@@ -61,13 +61,19 @@ export default function BookMeetingPage() {
 
       <section className={styles.layout} aria-labelledby="meeting-title">
         <div className={styles.intro}>
-          <span className={styles.eyebrow}>30 minutes / Google Meet</span>
+          <span className={styles.eyebrow}>Book a conversation</span>
           <h1 id="meeting-title">Let’s talk<br /><span>it through.</span></h1>
           <p>Pick a time that works for you. We can talk about a role, a project, or an idea you are still figuring out.</p>
-          <div className={styles.details}>
-            <span><Glyph name="calendar" size={17} /> 30-minute conversation</span>
-            <a href={`mailto:${profile.email}`}><Glyph name="mail" size={17} /> Prefer email?</a>
+          <div className={styles.eventSummary} aria-label="Meeting details">
+            <div><small>Hosted by</small><strong>Keyno</strong></div>
+            <h2>30 min meeting</h2>
+            <div className={styles.eventFacts}>
+              <span><Glyph name="clock" size={16} /> 30m</span>
+              <span><Glyph name="video" size={16} /> Cal Video</span>
+              <span><Glyph name="mapPin" size={16} /> Asia/Manila</span>
+            </div>
           </div>
+          <a className={styles.emailAlternative} href={`mailto:${profile.email}`}><Glyph name="mail" size={17} /> Prefer email?</a>
         </div>
 
         <div className={styles.calendarShell}>

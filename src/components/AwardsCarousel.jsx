@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { credentials, profile } from '../content/portfolio';
+import { credentials } from '../content/portfolio';
 import Glyph from './Glyph';
 import styles from './AwardsCarousel.module.css';
 
@@ -49,10 +49,10 @@ export default function AwardsCarousel() {
               <a
                 className={`${styles.coverCard} ${offset === 0 ? styles.activeCard : ''}`}
                 style={{ '--offset': offset, '--distance': distance, zIndex: 10 - distance }}
-                href={profile.linkedin}
+                href={credential.verifyUrl}
                 target="_blank"
                 rel="noreferrer"
-                aria-label={`Verify ${credential.title} on LinkedIn`}
+                aria-label={`Verify ${credential.title}`}
                 aria-current={offset === 0 ? 'true' : undefined}
                 key={`${credential.issuer}-${credential.title}`}
               >
@@ -78,7 +78,7 @@ export default function AwardsCarousel() {
           ))}
         </div>
 
-        <a className={styles.verifyLink} href={profile.linkedin} target="_blank" rel="noreferrer">Verify certificates on LinkedIn <Glyph name="arrowUpRight" size={15} /></a>
+        <a className={styles.verifyLink} href={active.verifyUrl} target="_blank" rel="noreferrer">Verify this certificate <Glyph name="arrowUpRight" size={15} /></a>
       </div>
     </section>
   );
