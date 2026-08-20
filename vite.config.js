@@ -11,6 +11,7 @@ export default defineConfig({
         main: fileURLToPath(new URL('./index.html', import.meta.url)),
         meeting: fileURLToPath(new URL('./book-a-meeting/index.html', import.meta.url)),
         projects: fileURLToPath(new URL('./projects/index.html', import.meta.url)),
+        studio: fileURLToPath(new URL('./studio/index.html', import.meta.url)),
       },
     },
   },
