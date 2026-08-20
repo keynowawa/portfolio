@@ -1,21 +1,23 @@
 import Glyph from './Glyph';
-import { profile } from '../content/portfolio';
+import { usePortfolioContent } from '../context/usePortfolioContent';
 import styles from './ContactLetsBuild.module.css';
 
 export default function ContactLetsBuild() {
+  const { content } = usePortfolioContent();
+  const { profile, contact } = content.site;
   return (
     <section id="contact" className={`${styles.contactSection} container section-padding`} aria-labelledby="contact-title">
       <div className={styles.contactStage}>
         <div className={styles.availability}>
-          <strong>Open to internships, freelance projects, and collaborations</strong>
-          <span>Philippines · available worldwide</span>
+          <strong>{contact.availability}</strong>
+          <span>{contact.locationLine}</span>
         </div>
 
         <div className={styles.contactLayout}>
           <header className={styles.pitch}>
             <span className="section-kicker"><span>06</span><span>Contact</span></span>
-            <h2 id="contact-title">Tell me what you’re<br /><span>trying to make.</span></h2>
-            <p>A role, a product, a collaboration, or even a half-formed idea. Send me the context and I’ll get back to you myself.</p>
+            <h2 id="contact-title">{contact.title.split('\n').map((line, index) => <span key={line}>{index > 0 && <br />}{line}</span>)}</h2>
+            <p>{contact.body}</p>
           </header>
 
           <div className={styles.actionPanel}>

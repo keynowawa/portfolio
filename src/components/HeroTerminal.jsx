@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { profile } from '../content/portfolio';
 import { findPersonalAnswer, heroComments } from '../content/askMe';
+import { usePortfolioContent } from '../context/usePortfolioContent';
 import Glyph from './Glyph';
 import styles from './HeroTerminal.module.css';
 
 export default function HeroTerminal() {
+  const { content } = usePortfolioContent();
+  const { profile, hero } = content.site;
   const [commentIndex, setCommentIndex] = useState(0);
   const [commentText, setCommentText] = useState('');
   const [deleting, setDeleting] = useState(false);
@@ -130,8 +132,8 @@ export default function HeroTerminal() {
         </nav>
 
         <div className={styles.terminalMain}>
-          <h1 id="hero-title">Kyann Tagle</h1>
-          <p className={styles.role}>Full-stack developer exploring data, privacy, and cryptography.</p>
+          <h1 id="hero-title">{hero.title}</h1>
+          <p className={styles.role}>{hero.role}</p>
 
           <div className={styles.commentTerminal} aria-hidden="true">
             <code>{commentText}</code>

@@ -1,11 +1,14 @@
 import Glyph from './Glyph';
 import MasterFooter from './MasterFooter';
 import ProjectVisual from './ProjectVisual';
-import { allProjects, findProject, projectPageHref } from '../content/allProjects';
+import { projectPageHref } from '../content/allProjects';
+import { usePortfolioContent } from '../context/usePortfolioContent';
 import styles from './ProjectDetailPage.module.css';
 
 export default function ProjectDetailPage({ slug }) {
-  const project = findProject(slug);
+  const { content } = usePortfolioContent();
+  const allProjects = content.projects.items;
+  const project = allProjects.find((item) => item.id === slug);
 
   if (!project) {
     return (

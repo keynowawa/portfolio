@@ -1,4 +1,4 @@
-import { toolkit } from '../content/portfolio';
+import { usePortfolioContent } from '../context/usePortfolioContent';
 import styles from './PhysicsStack.module.css';
 
 const techLogos = {
@@ -43,6 +43,8 @@ function TechItem({ item, hidden = false }) {
 }
 
 export default function PhysicsStack() {
+  const { content } = usePortfolioContent();
+  const toolkit = content.toolkit.items;
   return (
     <section id="toolkit" className={styles.toolkitSection} aria-labelledby="toolkit-title">
       <div className="container section-padding">

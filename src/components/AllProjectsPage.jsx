@@ -2,12 +2,19 @@ import { useMemo, useState } from 'react';
 import Glyph from './Glyph';
 import MasterFooter from './MasterFooter';
 import ProjectVisual from './ProjectVisual';
-import { allProjects, projectCategories, projectPageHref } from '../content/allProjects';
+import { projectPageHref } from '../content/allProjects';
+import { usePortfolioContent } from '../context/usePortfolioContent';
 import styles from './AllProjectsPage.module.css';
 
 export default function AllProjectsPage() {
+  const { content } = usePortfolioContent();
+  const allProjects = content.projects.items;
+  const projectCategories = content.projects.categories?.length
+    ? content.projects.categories
+    : ['All', ...new Set(allProjects.map((project) => project.category))];
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('All');
+  const [openActions, setOpenActions] = useState(null);
 
   const filteredProjects = useMemo(() => {
     const search = query.trim().toLowerCase();
@@ -16,7 +23,7 @@ export default function AllProjectsPage() {
       const searchable = `${project.title} ${project.type} ${project.category} ${project.description} ${project.stack.join(' ')}`.toLowerCase();
       return matchesCategory && (!search || searchable.includes(search));
     });
-  }, [category, query]);
+  }, [allProjects, category, query]);
 
   return (
     <>
@@ -60,9 +67,26 @@ export default function AllProjectsPage() {
               <div className={styles.grid}>
                 {filteredProjects.map((project) => (
                   <article className={styles.projectCard} key={project.id}>
-                    <div className={styles.media}>
+                    <div
+                      className={`${styles.media} ${openActions === project.id ? styles.actionsOpen : ''}`}
+                      onClick={(event) => {
+                        if (event.target.closest('a, button')) return;
+                        setOpenActions((current) => current === project.id ? null : project.id);
+                      }}
+                    >
                       <ProjectVisual project={project} />
-                      <div className={styles.actions}>
+                      <button
+                        className={styles.actionReveal}
+                        type="button"
+                        aria-label={`Show links for ${project.title}`}
+                        aria-expanded={openActions === project.id}
+                        aria-controls={`${project.id}-quick-links`}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          setOpenActions((current) => current === project.id ? null : project.id);
+                        }}
+                      />
+                      <div className={styles.actions} id={`${project.id}-quick-links`}>
                         {project.website && (
                           <a href={project.website} {...(project.website.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})} aria-label={`Visit ${project.title} website`} title="Visit website"><Glyph name="arrowUpRight" size={19} /></a>
                         )}

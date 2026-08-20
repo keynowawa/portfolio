@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { buildLog, experienceGallery } from '../content/portfolio';
+import { usePortfolioContent } from '../context/usePortfolioContent';
 import Glyph from './Glyph';
 import styles from './ExperienceMap.module.css';
 
@@ -25,6 +25,9 @@ function GalleryVisual({ item, index }) {
 }
 
 export default function ExperienceMap() {
+  const { content } = usePortfolioContent();
+  const buildLog = content.journey.items;
+  const experienceGallery = content.journey.gallery;
   const sectionRef = useRef(null);
   const timelineRef = useRef(null);
   const galleryRef = useRef(null);
@@ -66,7 +69,8 @@ export default function ExperienceMap() {
       const track = timelineRef.current;
       if (track && previousTime && !pausedRef.current && document.visibilityState === 'visible') {
         const delta = Math.min(time - previousTime, 32);
-        track.scrollLeft += delta * 0.044;
+        const speed = window.innerWidth <= 700 ? 0.068 : 0.05;
+        track.scrollLeft += delta * speed;
         const loopPoint = track.scrollWidth / 2;
         if (track.scrollLeft >= loopPoint) track.scrollLeft -= loopPoint;
       }
@@ -148,7 +152,10 @@ export default function ExperienceMap() {
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerEnd}
         onPointerCancel={handlePointerEnd}
-        onFocusCapture={pause}
+        onFocusCapture={() => {
+          if (window.matchMedia('(hover: none), (pointer: coarse)').matches) resumeAfter(0);
+          else pause();
+        }}
         onBlurCapture={() => resumeAfter(900)}
         onTouchEnd={() => resumeAfter(0)}
         aria-label="Career and leadership timeline. Scroll horizontally or use the previous and next buttons."

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { credentials } from '../content/portfolio';
+import { usePortfolioContent } from '../context/usePortfolioContent';
 import Glyph from './Glyph';
 import styles from './AwardsCarousel.module.css';
 
@@ -23,13 +23,16 @@ function CertificateVisual({ credential }) {
 }
 
 export default function AwardsCarousel() {
+  const { content } = usePortfolioContent();
+  const credentials = content.certificates.items;
   const [activeIndex, setActiveIndex] = useState(0);
+  if (!credentials.length) return null;
   const active = credentials[activeIndex];
   const move = (direction) => setActiveIndex((current) => (current + direction + credentials.length) % credentials.length);
   const visible = useMemo(() => [-2, -1, 0, 1, 2].map((offset) => ({
     offset,
     index: (activeIndex + offset + credentials.length) % credentials.length,
-  })), [activeIndex]);
+  })), [activeIndex, credentials.length]);
 
   return (
     <section id="credentials" className={`${styles.credentialsSection} section-padding`} aria-labelledby="credentials-title">

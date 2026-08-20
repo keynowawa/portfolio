@@ -1,29 +1,10 @@
 import Glyph from './Glyph';
-import { profile } from '../content/portfolio';
+import { usePortfolioContent } from '../context/usePortfolioContent';
 import styles from './Reviews.module.css';
 
-const placeholders = [
-  {
-    label: 'Client review',
-    quote: 'A client note will live here once I have permission to share it publicly.',
-    person: 'Reviewer name',
-    role: 'Client / organization',
-  },
-  {
-    label: 'Team review',
-    quote: 'A teammate’s perspective will go here, linked directly to their public profile.',
-    person: 'Reviewer name',
-    role: 'Teammate / organization',
-  },
-  {
-    label: 'Collaborator review',
-    quote: 'A collaborator’s honest take will appear here after they approve the final wording.',
-    person: 'Reviewer name',
-    role: 'Collaborator / project',
-  },
-];
-
 export default function Reviews() {
+  const { content } = usePortfolioContent();
+  const reviews = content.reviews.items;
   return (
     <section id="reviews" className={`${styles.reviewsSection} container section-padding`} aria-labelledby="reviews-title">
       <header className={styles.header}>
@@ -34,20 +15,20 @@ export default function Reviews() {
       </header>
 
       <div className={styles.reviewGrid}>
-        {placeholders.map((review, index) => (
-          <article className={styles.reviewCard} key={review.label}>
+        {reviews.map((review, index) => (
+          <article className={styles.reviewCard} key={review.id || review.label}>
             <div className={styles.cardTop}>
               <span>{String(index + 1).padStart(2, '0')} / {review.label}</span>
-              <span>Pending</span>
+              <span>{review.status || 'Published'}</span>
             </div>
             <blockquote>“{review.quote}”</blockquote>
             <footer>
-              <div className={styles.avatar} aria-hidden="true">{String(index + 1).padStart(2, '0')}</div>
+              <div className={styles.avatar} aria-hidden="true">{review.image ? <img src={review.image} alt="" /> : String(index + 1).padStart(2, '0')}</div>
               <div><strong>{review.person}</strong><span>{review.role}</span></div>
             </footer>
-            <a className={styles.profileLink} href={profile.linkedin} target="_blank" rel="noreferrer" aria-label={`Open placeholder profile for ${review.label}`} title="Profile link placeholder">
+            {review.profileUrl && <a className={styles.profileLink} href={review.profileUrl} target="_blank" rel="noreferrer" aria-label={`Open profile for ${review.person}`} title="Open reviewer profile">
               <Glyph name="arrowUpRight" size={19} />
-            </a>
+            </a>}
           </article>
         ))}
       </div>

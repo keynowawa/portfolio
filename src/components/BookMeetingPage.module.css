@@ -9,14 +9,7 @@
 .intro h1 { margin-top: 20px; color: #17191e; font-size: clamp(3.8rem,6.5vw,7rem); font-weight: 620; letter-spacing: -.08em; line-height: .87; }
 .intro h1 span { color: #858b95; }
 .intro > p { max-width: 480px; margin-top: 28px; color: #686f79; font-size: clamp(.94rem,1.15vw,1.05rem); line-height: 1.68; }
-.eventSummary { display: grid; max-width: 480px; margin-top: 24px; padding: 18px; grid-template-columns: 1fr auto; align-items: end; gap: 9px 18px; border: 1px solid rgba(17,24,39,.075); border-radius: 20px; background: rgba(255,255,255,.66); box-shadow: 0 16px 42px rgba(27,43,68,.065),inset 0 1px #fff; }
-.eventSummary > div:first-child { display: grid; gap: 2px; }
-.eventSummary small { color: #9097a1; font-family: var(--font-mono); font-size: .47rem; letter-spacing: .06em; text-transform: uppercase; }
-.eventSummary strong { color: #282c32; font-size: .72rem; }
-.eventSummary h2 { color: #30353c; font-size: 1.08rem; font-weight: 610; letter-spacing: -.035em; }
-.eventFacts { display: flex; grid-column: 1/-1; flex-wrap: wrap; gap: 7px; }
-.eventFacts span { display: inline-flex; min-height: 34px; padding: 0 10px; align-items: center; gap: 6px; border-radius: 999px; background: #edf3fa; color: #596574; font-size: .54rem; }
-.emailAlternative { display: inline-flex; min-height: 38px; margin-top: 12px; align-items: center; gap: 8px; color: #5b626d; font-size: .6rem; text-decoration: none; }
+.emailAlternative { display: inline-flex; min-height: 38px; margin-top: 22px; align-items: center; gap: 8px; color: #5b626d; font-size: .6rem; text-decoration: none; }
 .emailAlternative:hover { color: #006edb; }
 .calendarShell { min-width: 0; min-height: 0; height: 100%; overflow: hidden; border: 1px solid rgba(17,24,39,.08); border-radius: 26px; background: #fff; box-shadow: 0 28px 80px rgba(27,43,68,.12),inset 0 1px #fff; }
 .calendar { width: 100%; height: 100%; overflow: auto; }
@@ -27,7 +20,6 @@
   .eyebrow { grid-column: 1/-1; }
   .intro h1 { margin-top: 4px; font-size: clamp(2.5rem,8vw,4rem); line-height: .9; }
   .intro > p { display: none; }
-  .eventSummary { width: 100%; max-width: none; margin-top: 0; }
   .emailAlternative { display: none; }
   .calendarShell { border-radius: 22px; }
 }
@@ -39,10 +31,5 @@
   .intro { display: grid; padding: 4px 7px 2px; grid-template-columns: 1fr; gap: 7px; }
   .eyebrow { font-size: .49rem; }
   .intro h1 { margin-top: 0; font-size: clamp(2.2rem,11vw,3rem); line-height: .84; }
-  .eventSummary { width: 100%; max-width: none; margin-top: 2px; padding: 10px 12px; gap: 5px 8px; border-radius: 15px; }
-  .eventSummary h2 { font-size: .86rem; }
-  .eventFacts { flex-wrap: nowrap; gap: 4px; }
-  .eventFacts span { min-height: 28px; padding-inline: 7px; font-size: .47rem; }
-  .eventFacts svg { display: none; }
   .calendarShell { border-radius: 18px; }
 }

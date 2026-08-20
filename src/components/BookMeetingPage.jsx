@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { profile } from '../content/portfolio';
+import { usePortfolioContent } from '../context/usePortfolioContent';
 import Glyph from './Glyph';
 import styles from './BookMeetingPage.module.css';
 
@@ -47,6 +47,8 @@ function loadCalEmbed() {
 }
 
 export default function BookMeetingPage() {
+  const { content } = usePortfolioContent();
+  const { profile } = content.site;
   useEffect(() => {
     document.documentElement.dataset.theme = 'light';
     loadCalEmbed();
@@ -64,15 +66,6 @@ export default function BookMeetingPage() {
           <span className={styles.eyebrow}>Book a conversation</span>
           <h1 id="meeting-title">Let’s talk<br /><span>it through.</span></h1>
           <p>Pick a time that works for you. We can talk about a role, a project, or an idea you are still figuring out.</p>
-          <div className={styles.eventSummary} aria-label="Meeting details">
-            <div><small>Hosted by</small><strong>Keyno</strong></div>
-            <h2>30 min meeting</h2>
-            <div className={styles.eventFacts}>
-              <span><Glyph name="clock" size={16} /> 30m</span>
-              <span><Glyph name="video" size={16} /> Cal Video</span>
-              <span><Glyph name="mapPin" size={16} /> Asia/Manila</span>
-            </div>
-          </div>
           <a className={styles.emailAlternative} href={`mailto:${profile.email}`}><Glyph name="mail" size={17} /> Prefer email?</a>
         </div>
 

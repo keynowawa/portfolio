@@ -1,4 +1,4 @@
-import { profile } from '../content/portfolio';
+import { usePortfolioContent } from '../context/usePortfolioContent';
 import Glyph from './Glyph';
 import profilePortrait from '../assets/profile.png';
 import styles from './MasterFooter.module.css';
@@ -12,6 +12,8 @@ const index = [
 ];
 
 export default function MasterFooter() {
+  const { content } = usePortfolioContent();
+  const { profile } = content.site;
   const onPortfolioHome = window.location.pathname === '/';
   const sectionHref = (href) => onPortfolioHome ? href : `/${href}`;
 

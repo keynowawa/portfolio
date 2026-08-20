@@ -1,14 +1,16 @@
 import Glyph from './Glyph';
-import { profile } from '../content/portfolio';
 import profilePortrait from '../assets/profile.png';
+import { usePortfolioContent } from '../context/usePortfolioContent';
 import styles from './AboutMe.module.css';
 
 export default function AboutMe() {
+  const { content } = usePortfolioContent();
+  const { profile, about } = content.site;
   return (
     <section id="about" className={`${styles.aboutSection} container section-padding`} aria-labelledby="about-title">
       <div className={styles.headingBlock}>
-        <span className="section-kicker"><span>01</span><span>A little more</span></span>
-        <h2 id="about-title" className="section-title">Curious by default.<br />Builder by habit.</h2>
+        <span className="section-kicker"><span>01</span><span>{about.kicker}</span></span>
+        <h2 id="about-title" className="section-title">{about.title.split('\n').map((line, index) => <span key={line}>{index > 0 && <br />}{line}</span>)}</h2>
       </div>
 
       <div className={styles.editorialGrid}>
@@ -19,7 +21,7 @@ export default function AboutMe() {
 
           <div className={styles.profileDetails}>
             <div className={styles.profileSummary}>
-              <p>Quiet at first. Curious always. Serious about finishing what I start.</p>
+              <p>{about.cardSummary}</p>
             </div>
 
             <div className={styles.profileMeta} aria-label="Profile details">
@@ -36,11 +38,9 @@ export default function AboutMe() {
         </article>
 
         <div className={styles.story}>
-          <p className={styles.lede}>I’m Kyann, a fourth-year Computer Science student from Manila and Cavite. I listen before I jump in, learn fastest by making things, and tend to stay with a problem until it works. I’m looking for an internship or junior role where I can take ownership, keep learning, and help a thoughtful team ship useful work.</p>
+          <p className={styles.lede}>{about.body}</p>
           <dl className={styles.evidence} aria-label="Selected facts">
-            <div><dt>900+</dt><dd>community members reached</dd></div>
-            <div><dt>20</dt><dd>certificates earned</dd></div>
-            <div><dt>20</dt><dd>projects built</dd></div>
+            {about.kpis.map((kpi) => <div key={kpi.label}><dt>{kpi.value}</dt><dd>{kpi.label}</dd></div>)}
           </dl>
         </div>
       </div>

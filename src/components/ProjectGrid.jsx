@@ -1,11 +1,13 @@
+import { useState } from 'react';
 import Glyph from './Glyph';
-import { showcaseProjects } from '../content/showcaseProjects';
-import { projectPageHref, projectReelItems } from '../content/allProjects';
+import { projectPageHref } from '../content/allProjects';
+import { usePortfolioContent } from '../context/usePortfolioContent';
 import styles from './ProjectGrid.module.css';
 
 function ProjectArtwork({ project, compact = false }) {
-  if (project.image) {
-    return <img className={styles.projectImage} src={project.image} alt={`${project.title} interface`} loading="lazy" decoding="async" />;
+  const image = project.image || project.thumbnail;
+  if (image) {
+    return <img className={styles.projectImage} src={image} alt={`${project.title} interface`} loading="lazy" decoding="async" />;
   }
 
   return (
@@ -28,8 +30,8 @@ function ProjectArtwork({ project, compact = false }) {
   );
 }
 
-function ScreenshotReel() {
-  const reelItems = [...projectReelItems, ...projectReelItems];
+function ScreenshotReel({ items }) {
+  const reelItems = [...items, ...items];
   return (
     <div className={styles.reel} aria-hidden="true">
       <div className={styles.reelTrack}>
@@ -45,9 +47,17 @@ function ScreenshotReel() {
 }
 
 export default function ProjectGrid() {
+  const [openActions, setOpenActions] = useState(null);
+  const { content } = usePortfolioContent();
+  const showcaseProjects = content.projects.items
+    .filter((project) => project.featured)
+    .sort((first, second) => (first.featuredOrder ?? 999) - (second.featuredOrder ?? 999))
+    .slice(0, 6);
+  const reelItems = content.carousel.items || [];
+
   return (
     <section id="projects" className={styles.projectsSection} aria-labelledby="projects-title">
-      <ScreenshotReel />
+      {reelItems.length > 0 && <ScreenshotReel items={reelItems} />}
 
       <div className="container section-padding">
         <header className={styles.header}>
@@ -60,16 +70,33 @@ export default function ProjectGrid() {
 
         <div className={styles.grid}>
           {showcaseProjects.map((project) => {
-            const hasWebsite = project.href?.startsWith('http');
-            const detailHref = projectPageHref(project.detailId);
+            const hasWebsite = project.website?.startsWith('http');
+            const detailHref = projectPageHref(project.id);
 
             return (
               <article className={styles.projectCard} key={project.id}>
-                <div className={styles.media}>
+                <div
+                  className={`${styles.media} ${openActions === project.id ? styles.actionsOpen : ''}`}
+                  onClick={(event) => {
+                    if (event.target.closest('a, button')) return;
+                    setOpenActions((current) => current === project.id ? null : project.id);
+                  }}
+                >
                   <ProjectArtwork project={project} />
-                  <div className={styles.projectActions}>
+                  <button
+                    className={styles.actionReveal}
+                    type="button"
+                    aria-label={`Show links for ${project.title}`}
+                    aria-expanded={openActions === project.id}
+                    aria-controls={`${project.id}-quick-links`}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setOpenActions((current) => current === project.id ? null : project.id);
+                    }}
+                  />
+                  <div className={styles.projectActions} id={`${project.id}-quick-links`}>
                     {hasWebsite && (
-                      <a href={project.href} target="_blank" rel="noreferrer" aria-label={`Visit ${project.title} website`} title="Visit website">
+                      <a href={project.website} target="_blank" rel="noreferrer" aria-label={`Visit ${project.title} website`} title="Visit website">
                         <Glyph name="arrowUpRight" size={19} />
                       </a>
                     )}

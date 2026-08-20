@@ -12,6 +12,7 @@ import Wayfinder from './components/Wayfinder';
 import GlassNav from './components/GlassNav';
 import AllProjectsPage from './components/AllProjectsPage';
 import ProjectDetailPage from './components/ProjectDetailPage';
+import StudioPage from './components/StudioPage';
 
 function App() {
   const [locationKey, setLocationKey] = useState(() => `${window.location.pathname}${window.location.search}${window.location.hash}`);
@@ -40,6 +41,10 @@ function App() {
   }, [locationKey]);
 
   const normalizedPath = window.location.pathname.replace(/\/+$/, '') || '/';
+  if (normalizedPath === '/studio') {
+    return <StudioPage />;
+  }
+
   const projectMatch = normalizedPath.match(/^\/projects\/([^/]+)$/);
   const selectedProject = new URLSearchParams(window.location.search).get('project');
 
