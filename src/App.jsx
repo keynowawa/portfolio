@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import HeroTerminal from './components/HeroTerminal';
 import AboutMe from './components/AboutMe';
 import ProjectGrid from './components/ProjectGrid';
@@ -76,6 +77,7 @@ function App() {
         <ContactLetsBuild />
       </main>
       <MasterFooter />
+      <Analytics />
     </>
   );
 }
